@@ -1,0 +1,20 @@
+{
+  "name": "smalltalk_client",
+  "version": "1.0.0",
+  "description": "SmallTalk is the place to be if you want to post a quirky comment, funny gif or rant about how you are overworked :(\r This community driven website has been seperated into client side and server side repos to minimise risks to our code.\r So welcome to our client-side Repo and take a read below to find out more!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GMillerMc/smallTalk_Client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GMillerMc/smallTalk_Client/issues"
+  },
+  "homepage": "https://github.com/GMillerMc/smallTalk_Client#readme"
+}
