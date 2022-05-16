@@ -1,8 +1,6 @@
-// const titleName = require("../data/random_name");
-// const subName = require("../data/random_name");
 const postContent = document.getElementById("journalPost");
 const form = document.getElementById("form");
-// console.log(form.value);
+
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
@@ -152,6 +150,6 @@ function fetchPost(e, id) {
     .then((data) => (postText.textContent = data.text));
 }
 
-function createComment() {
-  postContent.appendChild("ssssssss");
-}
+// function createComment() {
+//   postContent.appendChild("ssssssss");
+// }
