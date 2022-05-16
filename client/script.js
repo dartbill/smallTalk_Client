@@ -45,7 +45,10 @@ form.addEventListener("submit", (e) => {
     .then((data) => {
       let test = data.text;
       test = postData.text;
-      //   console.log(test);
+      console.log(test);
+      createPost(e, data.length - 1);
+      let postText = document.getElementById(`postInfo-${data.length - 1}`);
+      postText = test;
     })
     .catch(console.warn);
 });
@@ -56,7 +59,7 @@ function loadPosts(e) {
     .then((data) => {
       // loop over our array and post each object
       for (let i = 0; i < data.length; i++) {
-        createPost(e, data[i].id);
+        fetchPost(e, data[i].id);
       }
     });
 }
@@ -70,7 +73,6 @@ postButton.addEventListener("click", (e) => {});
 
 function createPost(e, id) {
   e.preventDefault();
-  // Create new div
   const postContainer = document.createElement("div");
   const avatarContainer = document.createElement("div");
   const avatar = document.createElement("img");
@@ -93,7 +95,7 @@ function createPost(e, id) {
   headerContainer.className = "post_header";
   postName.id = "userName";
   postText.className = "post_headerDescription";
-  postText.id = "postInfo";
+  postText.id = `postInfo-${id}`;
   postFooter.className = "post_footer";
   reaction1.textContent = "sentiment_very_satisfied";
   reaction2.textContent = "sentiment_dissatisfied";
@@ -105,15 +107,6 @@ function createPost(e, id) {
   commentBar.className = "postComments";
   commentButton.className = "commentButton";
   commentButton.textContent = "Post";
-
-  // Populating details
-
-  const name = randomNameGenerator();
-  postName.textContent = name;
-  //   postText.textContent = postContent.value;
-  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
-    .then((r) => r.json())
-    .then((data) => (postText.textContent = data.text));
   // Appendature
   postFooter.appendChild(reaction3);
   postFooter.appendChild(reaction1);
@@ -135,4 +128,21 @@ function createPost(e, id) {
 
   // Clear text content
   postContent.value = "";
+
+  // Populating details
+
+  const name = randomNameGenerator();
+  postName.textContent = name;
+}
+
+function fetchPost(e, id) {
+  e.preventDefault();
+  // Create new div
+
+  createPost(e, id);
+  const postText = document.getElementById(`postInfo-${id}`);
+  //   postText.textContent = postContent.value;
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
+    .then((r) => r.json())
+    .then((data) => (postText.textContent = data.text));
 }
