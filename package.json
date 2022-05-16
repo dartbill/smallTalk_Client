@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/GMillerMc/smallTalk_Client/issues"
   },
-  "homepage": "https://github.com/GMillerMc/smallTalk_Client#readme"
+  "homepage": "https://github.com/GMillerMc/smallTalk_Client#readme",
+  "devDependencies": {
+    "jest": "^28.1.0"
+  }
 }
