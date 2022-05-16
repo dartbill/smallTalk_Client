@@ -5,7 +5,7 @@ const html = fs.readFileSync(
   "utf8"
 );
 
-describe("index.html", () => {
+describe("Dom Environment", () => {
   beforeEach(() => {
     document.documentElement.innerHTML = html.toString();
   });
