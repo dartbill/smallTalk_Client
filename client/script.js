@@ -30,6 +30,7 @@ postButton.addEventListener("click", (e) => {
 
 function createPost(e) {
   e.preventDefault();
+
   // Create new div
   const postContainer = document.createElement("div");
   const avatarContainer = document.createElement("div");
@@ -72,4 +73,7 @@ function createPost(e) {
   console.log(postContainer);
   parentDiv.appendChild(postContainer);
   //   document.getElementsByTagName("body")[0].appendChild(postContainer);
+
+  // Clear text content
+  postContent.value = "";
 }
