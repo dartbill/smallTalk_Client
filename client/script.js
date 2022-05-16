@@ -45,7 +45,11 @@ form.addEventListener("submit", (e) => {
     .then((data) => {
       let test = data.text;
       test = postData.text;
-      //   console.log(test);
+      console.log(test);
+      console.log(data);
+      createPost(e, data.id);
+      let postText = document.getElementById(`postInfo-${data.id}`);
+      postText.textContent = test;
     })
     .catch(console.warn);
 });
@@ -56,7 +60,7 @@ function loadPosts(e) {
     .then((data) => {
       // loop over our array and post each object
       for (let i = 0; i < data.length; i++) {
-        createPost(e, data[i].id);
+        fetchPost(e, data[i].id);
       }
     });
 }
@@ -65,12 +69,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
   loadPosts(e);
 });
 
-///// Add post
-postButton.addEventListener("click", (e) => {});
-
 function createPost(e, id) {
   e.preventDefault();
-  // Create new div
   const postContainer = document.createElement("div");
   const avatarContainer = document.createElement("div");
   const avatar = document.createElement("img");
@@ -82,8 +82,10 @@ function createPost(e, id) {
   const reaction1 = document.createElement("span");
   const reaction2 = document.createElement("span");
   const reaction3 = document.createElement("span");
+  const commentForm = document.createElement("form");
   const commentBar = document.createElement("textarea");
-  const commentButton = document.createElement("button");
+  const commentButton = document.createElement("input");
+  const commentList = document.createElement("ul");
 
   avatar.src =
     "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png";
@@ -93,7 +95,7 @@ function createPost(e, id) {
   headerContainer.className = "post_header";
   postName.id = "userName";
   postText.className = "post_headerDescription";
-  postText.id = "postInfo";
+  postText.id = `postInfo-${id}`;
   postFooter.className = "post_footer";
   reaction1.textContent = "sentiment_very_satisfied";
   reaction2.textContent = "sentiment_dissatisfied";
@@ -102,24 +104,19 @@ function createPost(e, id) {
   reaction3.className = "material-icons";
   reaction1.className = "material-icons";
   postContainer.className = "postFlex";
+  commentForm.className = "commentForm";
+  commentForm.id = `postInfo-${id}`;
   commentBar.className = "postComments";
   commentButton.className = "commentButton";
+  commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
-
-  // Populating details
-
-  const name = randomNameGenerator();
-  postName.textContent = name;
-  //   postText.textContent = postContent.value;
-  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
-    .then((r) => r.json())
-    .then((data) => (postText.textContent = data.text));
   // Appendature
   postFooter.appendChild(reaction3);
   postFooter.appendChild(reaction1);
   postFooter.appendChild(reaction2);
-  postFooter.appendChild(commentBar);
-  postFooter.appendChild(commentButton);
+  postFooter.appendChild(commentForm);
+  commentForm.appendChild(commentBar);
+  commentForm.appendChild(commentButton);
 
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
@@ -129,10 +126,32 @@ function createPost(e, id) {
 
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
+  postText.appendChild(commentList);
   //   console.log(postContainer);
   parentDiv.appendChild(postContainer);
   //   document.getElementsByTagName("body")[0].appendChild(postContainer);
 
   // Clear text content
   postContent.value = "";
+
+  // Populating details
+
+  const name = randomNameGenerator();
+  postName.textContent = name;
+}
+
+function fetchPost(e, id) {
+  e.preventDefault();
+  // Create new div
+
+  createPost(e, id);
+  const postText = document.getElementById(`postInfo-${id}`);
+  //   postText.textContent = postContent.value;
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
+    .then((r) => r.json())
+    .then((data) => (postText.textContent = data.text));
+}
+
+function createComment() {
+  postContent.appendChild("ssssssss");
 }
