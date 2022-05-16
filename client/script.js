@@ -3,7 +3,7 @@
 const postContent = document.getElementById("journalPost");
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
-const postContainer = document.getElementById("postInfo");
+const parentDiv = document.getElementById("posts");
 
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
@@ -25,14 +25,48 @@ function randomNameGenerator() {
 // Click event 4 posts
 
 postButton.addEventListener("click", (e) => {
+  createPost(e);
+});
+
+function createPost(e) {
   e.preventDefault();
   // Create new div
+  const avatarContainer = document.createElement("div");
+  const avatar = document.createElement("img");
+  const newPost = document.createElement("div");
+  const postText = document.createElement("div");
+  const headerContainer = document.createElement("div");
+  const postName = document.createElement("h3");
+  const postFooter = document.createElement("div");
+  const reaction1 = document.createElement("span");
 
-  //   let postText, newPost;
+  avatar.src =
+    "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png";
+  avatar.alt = "Cartoon Avatar";
+  avatarContainer.className = "post_avatar";
+  newPost.className = "post_body";
+  headerContainer.className = "post_header";
+  postName.id = "userName";
+  postText.className = "post_headerDescription";
+  postText.id = "postInfo";
+  postFooter.className = "post_footer";
+  reaction1.className = "material-icons";
+  reaction1.textContent = "add_reaction";
 
-  // Title Name
+  // Populating details
   const name = randomNameGenerator();
-  annoynmousName.textContent = name;
-  // Text Content
-  postContainer.textContent = postContent.value;
-});
+  postName.textContent = name;
+  postText.textContent = postContent.value;
+  // Appendature
+  postFooter.appendChild(reaction1);
+  avatarContainer.appendChild(avatar);
+  headerContainer.appendChild(postName);
+  headerContainer.appendChild(postText);
+  newPost.appendChild(headerContainer);
+  newPost.appendChild(postFooter);
+
+  parentDiv.appendChild(avatarContainer);
+  parentDiv.appendChild(newPost);
+
+  console.log(parentDiv);
+}
