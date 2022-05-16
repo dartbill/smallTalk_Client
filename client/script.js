@@ -53,7 +53,7 @@ function createPost(e) {
   postFooter.className = "post_footer";
   reaction1.className = "material-icons";
   reaction1.textContent = "add_reaction";
-  postContainer.className = "post";
+  postContainer.className = "postFlex";
 
   // Populating details
   const name = randomNameGenerator();
@@ -67,8 +67,9 @@ function createPost(e) {
   newPost.appendChild(headerContainer);
   newPost.appendChild(postFooter);
 
-  parentDiv.appendChild(avatarContainer);
-  parentDiv.appendChild(newPost);
-  postContainer.appendChild(parentDiv);
-  console.log(parentDiv);
+  postContainer.appendChild(avatarContainer);
+  postContainer.appendChild(newPost);
+  console.log(postContainer);
+  parentDiv.appendChild(postContainer);
+  //   document.getElementsByTagName("body")[0].appendChild(postContainer);
 }
