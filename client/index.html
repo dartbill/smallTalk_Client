@@ -91,65 +91,15 @@
               src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
               alt=""
             />
-            <input type="text" placeholder="What's happnin?" />
+            <input id="journalPost" type="text" placeholder="What's happnin?" name="post"/>
           </div>
-          <button class="tweetBox_tweetButton">Push</button>
+          <button id="postButton" class="tweetBox_tweetButton" name="post">Push</button>
         </form>
       </div>
       <!-- tweetbox ends -->
 
-      <!-- 1st Post starts -->
-      <div class="post">
-        <div class="post_avatar">
-          <img
-            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
-            alt=""
-          />
-        </div>
-        <div class="post_body">
-          <div class="post_header">
-            <div class="post_headerText">
-              <h3 id="userName">Amir Ali</h3>
-            </div>
-            <div class="post_headerDescription">
-              <p>Don't mind me, just nippin out for McDonalds</p>
-            </div>
-          </div>
-
-          <div class="post_footer">
-            <span class="material-icons"> add_reaction </span>
-            <span class="material-icons"> favourite_border </span>
-            <span class="material-icons"> mood </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 1st Post ends -->
-
-      <!-- Feed ends -->
-    </div>
-
-    <!-- widget starts -->
-    <div class="widgets">
-      <div class="widgets_input">
-        <span class="material-icons widgets_searchIcon"> search </span>
-        <input type="text" placeholder="search Small Talk" />
-      </div>
-      <div class="widgets_widgetContainer">
-        <h2>whats happenin?</h2>
-        <a
-          class="twitter-timeline"
-          href="https://twitter.com/rogerfederer?ref_src=twsrc%5Etfw"
-          >Tweets by rogerfederer</a
-        >
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </div>
-    </div>
-
-    <!-- widget ends -->
+      
+    <div id="posts" class="post"></div>
+   
   </body>
 </html>

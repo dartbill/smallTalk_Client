@@ -1,22 +1,129 @@
 // const titleName = require("../data/random_name");
 // const subName = require("../data/random_name");
+const postContent = document.getElementById("journalPost");
+const annoynmousName = document.getElementById("userName");
+const postButton = document.getElementById("postButton");
+const parentDiv = document.getElementById("posts");
 
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 const titleName = ["Lord", "The Common", "King", "The Divine"];
 const subName = ["Apple", "Fish", "Salt", "Pepper"];
 
+// Sending data
+// function submitPost(e) {
+//   e.preventDefault();
+
+//   //  const postData {
+//   //      text: e.target.text.value,
+
+//   //  };
+
+//   fetch("https://small-talk-fp1.herokuapp.com/new", options)
+//     .then((r) => r.json())
+//     .then(createPost)
+//     .catch(console.warn);
+// }
+
+//////// Random Name Section
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function randomNameGenerator() {
-  console.log(titleName[getRandomInt(0, titleName.length)]);
-  console.log(subName[getRandomInt(0, subName.length)]);
   let name = `${titleName[getRandomInt(0, titleName.length)]} ${
     subName[getRandomInt(0, subName.length)]
   }`;
-  console.log(name);
+
   return name;
 }
 
-randomNameGenerator();
+// Click event 4 posts
+
+postButton.addEventListener("click", (e) => {
+  createPost(e);
+});
+
+function createPost(e) {
+  e.preventDefault();
+  console.log(e.target.value);
+  //   const postData = {
+  //     text: e.target.text.value,
+  //   };
+  const options = {
+    method: "POST",
+    body: JSON.stringify(postData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  // Create new div
+  const postContainer = document.createElement("div");
+  const avatarContainer = document.createElement("div");
+  const avatar = document.createElement("img");
+  const newPost = document.createElement("div");
+  const postText = document.createElement("div");
+  const headerContainer = document.createElement("div");
+  const postName = document.createElement("h3");
+  const postFooter = document.createElement("div");
+  const reaction1 = document.createElement("span");
+  const reaction2 = document.createElement("span");
+  const reaction3 = document.createElement("span");
+  const commentBar = document.createElement("textarea");
+  const commentButton = document.createElement("button");
+
+  avatar.src =
+    "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png";
+  avatar.alt = "Cartoon Avatar";
+  avatarContainer.className = "post_avatar";
+  newPost.className = "post_body";
+  headerContainer.className = "post_header";
+  postName.id = "userName";
+  postText.className = "post_headerDescription";
+  postText.id = "postInfo";
+  postFooter.className = "post_footer";
+  reaction1.textContent = "sentiment_very_satisfied";
+  reaction2.textContent = "sentiment_dissatisfied";
+  reaction3.textContent = "thumb_up";
+  reaction2.className = "material-icons";
+  reaction3.className = "material-icons";
+  reaction1.className = "material-icons";
+  postContainer.className = "postFlex";
+  commentBar.className = "postComments";
+  commentButton.className = "commentButton";
+  commentButton.textContent = "Post";
+
+  // Populating details
+  fetch("https://small-talk-fp1.herokuapp.com/new", options)
+    .then((r) => r.json())
+    .then((data) => {
+      let test = data.text;
+      test = postContent.value;
+      console.log(test);
+    })
+    .catch(console.warn);
+  const name = randomNameGenerator();
+
+  postName.textContent = name;
+  postText.textContent = postContent.value;
+  // Appendature
+  postFooter.appendChild(reaction3);
+  postFooter.appendChild(reaction1);
+  postFooter.appendChild(reaction2);
+  postFooter.appendChild(commentBar);
+  postFooter.appendChild(commentButton);
+
+  avatarContainer.appendChild(avatar);
+  headerContainer.appendChild(postName);
+  headerContainer.appendChild(postText);
+  newPost.appendChild(headerContainer);
+  newPost.appendChild(postFooter);
+
+  postContainer.appendChild(avatarContainer);
+  postContainer.appendChild(newPost);
+  console.log(postContainer);
+  parentDiv.appendChild(postContainer);
+  //   document.getElementsByTagName("body")[0].appendChild(postContainer);
+
+  // Clear text content
+  postContent.value = "";
+}
