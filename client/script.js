@@ -69,9 +69,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
   loadPosts(e);
 });
 
-///// Add post
-postButton.addEventListener("click", (e) => {});
-
 function createPost(e, id) {
   e.preventDefault();
   const postContainer = document.createElement("div");
@@ -85,8 +82,10 @@ function createPost(e, id) {
   const reaction1 = document.createElement("span");
   const reaction2 = document.createElement("span");
   const reaction3 = document.createElement("span");
+  const commentForm = document.createElement("form");
   const commentBar = document.createElement("textarea");
-  const commentButton = document.createElement("button");
+  const commentButton = document.createElement("input");
+  const commentList = document.createElement("ul");
 
   avatar.src =
     "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png";
@@ -105,15 +104,19 @@ function createPost(e, id) {
   reaction3.className = "material-icons";
   reaction1.className = "material-icons";
   postContainer.className = "postFlex";
+  commentForm.className = "commentForm";
+  commentForm.id = `postInfo-${id}`;
   commentBar.className = "postComments";
   commentButton.className = "commentButton";
+  commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
   // Appendature
   postFooter.appendChild(reaction3);
   postFooter.appendChild(reaction1);
   postFooter.appendChild(reaction2);
-  postFooter.appendChild(commentBar);
-  postFooter.appendChild(commentButton);
+  postFooter.appendChild(commentForm);
+  commentForm.appendChild(commentBar);
+  commentForm.appendChild(commentButton);
 
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
@@ -123,6 +126,7 @@ function createPost(e, id) {
 
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
+  postText.appendChild(commentList);
   //   console.log(postContainer);
   parentDiv.appendChild(postContainer);
   //   document.getElementsByTagName("body")[0].appendChild(postContainer);
@@ -146,4 +150,8 @@ function fetchPost(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
     .then((data) => (postText.textContent = data.text));
+}
+
+function createComment() {
+  postContent.appendChild("ssssssss");
 }
