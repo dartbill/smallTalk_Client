@@ -1,255 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Small Talk</title>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Small Talk!!</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Small Talk</title>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <link rel="stylesheet" href="styles.css" />
-</head>
+    <script defer src="script.js"></script>
+  </head>
 
-<body>
-
+  <body>
     <!-- side bar starts -->
     <div class="sidebar">
-        <i class="fab fa-twitter"></i>
-        <div class="sidebarOption active">
+      <i class="fab fa-twitter"></i>
+      <div class="sidebarOption active">
         <span class="material-icons"> home </span>
         <h2>Home</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> search </span>
         <h2>Hunt</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> notifications_none </span>
         <h2>Flares</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> mail_outline </span>
         <h2>Long Talks</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> bookmark_border </span>
         <h2>Bookmarks</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> list_alt </span>
         <h2>Lists</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> perm_identity </span>
         <h2>My Profile</h2>
-    </div>
+      </div>
 
-    <div class="sidebarOption">
+      <div class="sidebarOption">
         <span class="material-icons"> more_horiz </span>
         <h2>More</h2>
-    </div>
-    <button class="sidebar_speak">Push</button>
+      </div>
+      <button class="sidebar_speak">Push</button>
     </div>
     <!-- side bar ends  -->
 
-
     <!-- Feed starts -->
     <div class="feed">
-        <div class="feed_header">
-            <h2>Small Talk</h2>
+      <div class="feed_header">
+        <h2>Small Talk</h2>
+      </div>
+
+      <!-- tweetbox starts -->
+      <div class="tweetBox">
+        <form>
+          <div class="tweetbox_input">
+            <img
+              src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+              alt=""
+            />
+            <input type="text" placeholder="What's happnin?" />
+          </div>
+          <button class="tweetBox_tweetButton">Push</button>
+        </form>
+      </div>
+      <!-- tweetbox ends -->
+
+      <!-- 1st Post starts -->
+      <div class="post">
+        <div class="post_avatar">
+          <img
+            src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+            alt=""
+          />
+        </div>
+        <div class="post_body">
+          <div class="post_header">
+            <div class="post_headerText">
+              <h3 id="userName">Amir Ali</h3>
             </div>
-
-            <!-- tweetbox starts -->
-            <div class="tweetBox">
-                <form>
-                    <div class="tweetbox_input"> 
-                        <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="">
-                        <input type="text" placeholder="What's happnin?" />
-                        </div>
-                        <button class="tweetBox_tweetButton">Push</button>
-                </form>
+            <div class="post_headerDescription">
+              <p>Don't mind me, just nippin out for McDonalds</p>
             </div>
-            <!-- tweetbox ends -->
+          </div>
 
+          <div class="post_footer">
+            <span class="material-icons"> add_reaction </span>
+            <span class="material-icons"> favourite_border </span>
+            <span class="material-icons"> mood </span>
+          </div>
+        </div>
+      </div>
 
-            <!-- 1st Post starts -->
-            <div class="post">
-                <div class="post_avatar">
-                    <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="">
-                </div>
-                <div class="post_body">
-                    <div class="post_header">
-                        <div class="post_headerText">
-                            <h3>Amir Ali
-                                <span class="post_headerSpecial">
-                                    <span class="material-icons post_badge"> verified </span> @aha000111
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="post_headerDescription">
-                            <p>Don't mind me, just nippin out for McDonalds </p>
-                        </div>
-                    </div>
-                    <img src="https://i.insider.com/5bc9e4dcf3227b2afa54a4cc?width=1136&format=jpeg" alt="">
+      <!-- 1st Post ends -->
 
-                    <div class="post_footer">
-                        <span class="material-icons"> repeat </span>
-                        <span class="material-icons"> favourite_border </span>
-                        <span class="material-icons"> publish </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 1st Post ends -->
-
-            <!-- 2nd Post starts -->
-            <div class="post">
-                <div class="post_avatar">
-                    <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="">
-                </div>
-                <div class="post_body">
-                    <div class="post_header">
-                        <div class="post_headerText">
-                            <h3>Sam Hardiment
-                                <span class="post_headerSpecial">
-                                    <span class="material-icons post_badge"> verified </span> @SamHardiment
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="post_headerDescription">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <img src="https://i.insider.com/5bc9e4dcf3227b2afa54a4cc?width=1136&format=jpeg" alt="">
-
-                    <div class="post_footer">
-                        <span class="material-icons"> repeat </span>
-                        <span class="material-icons"> favourite_border </span>
-                        <span class="material-icons"> publish </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2nd Post ends -->
-
-            <!-- 3rd Post starts -->
-            <div class="post">
-                <div class="post_avatar">
-                    <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="">
-                </div>
-                <div class="post_body">
-                    <div class="post_header">
-                        <div class="post_headerText">
-                            <h3>Billie Dartnell
-                                <span class="post_headerSpecial">
-                                    <span class="material-icons post_badge"> verified </span> @dartbill
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="post_headerDescription">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <img src="https://i.insider.com/5bc9e4dcf3227b2afa54a4cc?width=1136&format=jpeg" alt="">
-
-                    <div class="post_footer">
-                        <span class="material-icons"> repeat </span>
-                        <span class="material-icons"> favourite_border </span>
-                        <span class="material-icons"> publish </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3rd Post ends -->
-
-            <!-- 4th Post starts -->
-            <div class="post">
-                <div class="post_avatar">
-                    <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="">
-                </div>
-                <div class="post_body">
-                    <div class="post_header">
-                        <div class="post_headerText">
-                            <h3>George Miller-McCall
-                                <span class="post_headerSpecial">
-                                    <span class="material-icons post_badge"> verified </span> @GMillerMc
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="post_headerDescription">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <img src="https://i.insider.com/5bc9e4dcf3227b2afa54a4cc?width=1136&format=jpeg" alt="">
-
-                    <div class="post_footer">
-                        <span class="material-icons"> repeat </span>
-                        <span class="material-icons"> favourite_border </span>
-                        <span class="material-icons"> publish </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4th Post ends -->
-
-            <!-- 5th Post starts -->
-            <div class="post">
-                <div class="post_avatar">
-                    <img src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png" alt="">
-                </div>
-                <div class="post_body">
-                    <div class="post_header">
-                        <div class="post_headerText">
-                            <h3>Amir Ali
-                                <span class="post_headerSpecial">
-                                    <span class="material-icons post_badge"> verified </span> @aha000111
-                                </span>
-                            </h3>
-                        </div>
-                        <div class="post_headerDescription">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <img src="https://i.insider.com/5bc9e4dcf3227b2afa54a4cc?width=1136&format=jpeg" alt="">
-
-                    <div class="post_footer">
-                        <span class="material-icons"> repeat </span>
-                        <span class="material-icons"> favourite_border </span>
-                        <span class="material-icons"> publish </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5th Post ends -->
-   <!-- Feed ends -->
+      <!-- Feed ends -->
     </div>
-        
-            <!-- widget starts -->
-            <div class="widgets">
-                <div class="widgets_input">
-                    <span class="material-icons widgets_searchIcon"> search </span>
-                    <input type="text" placeholder="search Small Talk">
-                </div>
-                <div class="widgets_widgetContainer">
-                    <h2>whats happenin?</h2>
-                    <a class="twitter-timeline" href="https://twitter.com/rogerfederer?ref_src=twsrc%5Etfw">Tweets by rogerfederer</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-                </div>
-            </div>
+    <!-- widget starts -->
+    <div class="widgets">
+      <div class="widgets_input">
+        <span class="material-icons widgets_searchIcon"> search </span>
+        <input type="text" placeholder="search Small Talk" />
+      </div>
+      <div class="widgets_widgetContainer">
+        <h2>whats happenin?</h2>
+        <a
+          class="twitter-timeline"
+          href="https://twitter.com/rogerfederer?ref_src=twsrc%5Etfw"
+          >Tweets by rogerfederer</a
+        >
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+      </div>
+    </div>
 
-            <!-- widget ends -->
-
-</body>
+    <!-- widget ends -->
+  </body>
 </html>
