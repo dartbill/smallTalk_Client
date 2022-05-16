@@ -36,7 +36,7 @@ We used Jest to test our code and our coverage. To do this we install Jest as a 
 
 We launched our client on Netlify (not launching, may be to do with html file not being at the top)
 
-- url to netlify
+- [Look at smallTalk on Netlify](https://cool-rolypoly-62fa4c.netlify.app)
 
 ### Wins
 
@@ -45,11 +45,12 @@ We launched our client on Netlify (not launching, may be to do with html file no
 - On the DOM being loaded, the previous posts are fetched from the server and displayed
 - Each post has there own ID so their content can be collected
 - **SOLVED** Managed to add the new post in the post fetch method which invokes the createPost function.
+- **SOLVED** The index.html file has to be a top level file and now is deployed on Netlify
 
 ### Challenges
 
-- Netlify failing to load (may be to do with html file not being at the top)
-- Issue when posting new posts, that they do not appear until the page refreshes **SOLVED**
+- ~~Netlify failing to load (may be to do with html file not being at the top)~~ **SOLVED**
+- ~~Issue when posting new posts, that they do not appear until the page refreshes~~ **SOLVED**
 - We attempted to use a bundler Watchify so we could keep our data seperate but had a few issues using the require method
 
 ### Bugs
