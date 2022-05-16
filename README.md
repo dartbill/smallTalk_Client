@@ -14,6 +14,13 @@ So welcome to our client-side Repo and take a read below to find out more!
 
 ### Technologies
 
+###### Live Server
+
+You can access a live server of smallTalk but simply running the `dev` script. The live server takes advantage of the npm script `currently` to start the `watchify` bundler and a http-server.
+
+- Install: `npm i -D watchify concurrently http-server`
+- Script: `"dev": "concurrently \"watchify ./client/script.js -o bundle.js\" \"http-server\""`
+
 ###### Jest
 
 We used Jest to test our code and our coverage. To do this we install Jest as a dev dependency;
