@@ -76,7 +76,7 @@ body {
 .feed {
   flex: 0.5;
   border-right: 1px solid var(--smallTalk-background);
-  min-width: fit-content;
+  min-width: 600px;
   overflow-y: scroll;
 }
 
@@ -171,8 +171,9 @@ body {
 
 .post_footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 10px;
+  align-items: center;
 }
 
 .post_badge {
@@ -206,49 +207,19 @@ body {
   padding: 20px;
 }
 
-/* widgets */
-
-.widgets {
-  flex: 0.3;
-  display: none;
-}
-
-.widgets_input {
-  display: flex;
-  align-items: center;
-  background-color: var(--smallTalk-background);
-  padding: 10px;
-  border-radius: 20px;
-  margin-top: 10px;
-  margin-left: 20px;
-}
-
-.widgets_input input {
-  border: none;
-  background-color: var(--smallTalk-background);
-  outline: none;
-}
-
-.widget_searchIcon {
-  color: gray;
-}
-
-.widgets_widgetContainer {
-  margin-top: 15px;
-  margin-left: 20px;
-  padding: 20px;
-  background-color: #f5f8fa;
-  border-radius: 20px;
-}
-
-.widgets_widgetContainer h2 {
-  font-size: 18px;
-  font-weight: 800;
-}
-
 .postFlex {
   display: flex;
   border-bottom: 1px solid var(--smallTalk-background);
   padding-bottom: 10px;
   width: 100%;
+}
+
+.material-icons {
+  padding: 2px;
+}
+.material-icons:last-child {
+  flex-basis: 100%;
+}
+.postComments {
+  padding: 2px;
 }
