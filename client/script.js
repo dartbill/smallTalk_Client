@@ -1,6 +1,8 @@
 // const titleName = require("../data/random_name");
 // const subName = require("../data/random_name");
 const postContent = document.getElementById("journalPost");
+const form = document.getElementById("form");
+// console.log(form.value);
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
@@ -9,21 +11,6 @@ const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 const titleName = ["Lord", "The Common", "King", "The Divine"];
 const subName = ["Apple", "Fish", "Salt", "Pepper"];
-
-// Sending data
-// function submitPost(e) {
-//   e.preventDefault();
-
-//   //  const postData {
-//   //      text: e.target.text.value,
-
-//   //  };
-
-//   fetch("https://small-talk-fp1.herokuapp.com/new", options)
-//     .then((r) => r.json())
-//     .then(createPost)
-//     .catch(console.warn);
-// }
 
 //////// Random Name Section
 function getRandomInt(min, max) {
@@ -37,18 +24,14 @@ function randomNameGenerator() {
   return name;
 }
 
-// Click event 4 posts
+////// Sending Data
 
-postButton.addEventListener("click", (e) => {
-  createPost(e);
-});
-
-function createPost(e) {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(e.target.value);
-  //   const postData = {
-  //     text: e.target.text.value,
-  //   };
+
+  const postData = {
+    text: e.target.journalPost.value,
+  };
   const options = {
     method: "POST",
     body: JSON.stringify(postData),
@@ -56,6 +39,37 @@ function createPost(e) {
       "Content-Type": "application/json",
     },
   };
+
+  fetch("https://small-talk-fp1.herokuapp.com/new", options)
+    .then((res) => res.json())
+    .then((data) => {
+      let test = data.text;
+      test = postData.text;
+      //   console.log(test);
+    })
+    .catch(console.warn);
+});
+// Posts loads on visiting the page
+function loadPosts(e) {
+  fetch("https://small-talk-fp1.herokuapp.com/")
+    .then((r) => r.json())
+    .then((data) => {
+      // loop over our array and post each object
+      for (let i = 0; i < data.length; i++) {
+        createPost(e, data[i].id);
+      }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  loadPosts(e);
+});
+
+///// Add post
+postButton.addEventListener("click", (e) => {});
+
+function createPost(e, id) {
+  e.preventDefault();
   // Create new div
   const postContainer = document.createElement("div");
   const avatarContainer = document.createElement("div");
@@ -93,18 +107,13 @@ function createPost(e) {
   commentButton.textContent = "Post";
 
   // Populating details
-  fetch("https://small-talk-fp1.herokuapp.com/new", options)
-    .then((r) => r.json())
-    .then((data) => {
-      let test = data.text;
-      test = postContent.value;
-      console.log(test);
-    })
-    .catch(console.warn);
-  const name = randomNameGenerator();
 
+  const name = randomNameGenerator();
   postName.textContent = name;
-  postText.textContent = postContent.value;
+  //   postText.textContent = postContent.value;
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
+    .then((r) => r.json())
+    .then((data) => (postText.textContent = data.text));
   // Appendature
   postFooter.appendChild(reaction3);
   postFooter.appendChild(reaction1);
@@ -120,7 +129,7 @@ function createPost(e) {
 
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
-  console.log(postContainer);
+  //   console.log(postContainer);
   parentDiv.appendChild(postContainer);
   //   document.getElementsByTagName("body")[0].appendChild(postContainer);
 
