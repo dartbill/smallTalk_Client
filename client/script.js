@@ -31,6 +31,7 @@ postButton.addEventListener("click", (e) => {
 function createPost(e) {
   e.preventDefault();
   // Create new div
+  const postContainer = document.createElement("div");
   const avatarContainer = document.createElement("div");
   const avatar = document.createElement("img");
   const newPost = document.createElement("div");
@@ -52,6 +53,7 @@ function createPost(e) {
   postFooter.className = "post_footer";
   reaction1.className = "material-icons";
   reaction1.textContent = "add_reaction";
+  postContainer.className = "post";
 
   // Populating details
   const name = randomNameGenerator();
@@ -67,6 +69,6 @@ function createPost(e) {
 
   parentDiv.appendChild(avatarContainer);
   parentDiv.appendChild(newPost);
-
+  postContainer.appendChild(parentDiv);
   console.log(parentDiv);
 }
