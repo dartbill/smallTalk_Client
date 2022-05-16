@@ -4,7 +4,8 @@
   "description": "SmallTalk is the place to be if you want to post a quirky comment, funny gif or rant about how you are overworked :(\r This community driven website has been seperated into client side and server side repos to minimise risks to our code.\r So welcome to our client-side Repo and take a read below to find out more!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,13 @@
   },
   "homepage": "https://github.com/GMillerMc/smallTalk_Client#readme",
   "devDependencies": {
-    "jest": "^28.1.0"
+    "concurrently": "^7.2.0",
+    "http-server": "^14.1.0",
+    "jest": "^28.1.0",
+    "watchify": "^4.0.0"
+  },
+  "dependencies": {
+    "package-lock.json": "^1.0.0",
+    "package.json": "^2.0.1"
   }
 }
