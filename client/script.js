@@ -46,9 +46,10 @@ form.addEventListener("submit", (e) => {
       let test = data.text;
       test = postData.text;
       console.log(test);
-      createPost(e, data.length - 1);
-      let postText = document.getElementById(`postInfo-${data.length - 1}`);
-      postText = test;
+      console.log(data);
+      createPost(e, data.id);
+      let postText = document.getElementById(`postInfo-${data.id}`);
+      postText.textContent = test;
     })
     .catch(console.warn);
 });
