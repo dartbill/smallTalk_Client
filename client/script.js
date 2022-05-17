@@ -118,7 +118,6 @@ function loadPosts(e) {
 function fetchPost(e, id) {
   e.preventDefault();
   createPost(e, id);
-
   const postText = document.getElementById(`postInfo-${id}`);
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
@@ -176,9 +175,9 @@ function createPost(e, id) {
   reaction2.className = "material-icons";
   reaction3.className = "material-icons";
   reaction1.className = "material-icons";
-  reaction1.id = `like-${id}`;
-  reaction2.id = `smile-${id}`;
-  reaction3.id = `sad-${id}`;
+  reaction3.id = `like-${id}`;
+  reaction1.id = `smile-${id}`;
+  reaction2.id = `sad-${id}`;
   postContainer.className = "postFlex";
 
   commentForm.className = "commentForm";
@@ -222,6 +221,7 @@ function createPost(e, id) {
 }
 
 ////////////////////////////// Comment area
+
 commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -232,6 +232,7 @@ function getcommentinput(e) {
   console.log(e.target.commentPost.value);
   const postData = {
     comments: e.target.commentPost.value,
+    react: 1,
   };
 
   const options = {
@@ -263,4 +264,9 @@ function createComment(id, i) {
     });
 }
 
-///////////// Fetch
+////////// emoji counter
+
+const likeBtn = document.querySelector("#posts");
+console.log(likeBtn);
+
+/////////
