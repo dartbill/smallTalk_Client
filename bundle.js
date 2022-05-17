@@ -1,17 +1,17 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 const postContent = document.getElementById("journalPost");
 const form = document.getElementById("form");
-
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
 
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
+///////////// Random Name function
+
 const titleName = ["Lord", "The Common", "King", "The Divine"];
 const subName = ["Apple", "Fish", "Salt", "Pepper"];
 
-//////// Random Name Section
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -23,7 +23,7 @@ function randomNameGenerator() {
   return name;
 }
 
-////// Sending Data
+////// Sending Data to herokuapp
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -44,29 +44,43 @@ form.addEventListener("submit", (e) => {
     .then((data) => {
       let test = data.text;
       test = postData.text;
-      console.log(test);
-      console.log(data);
       createPost(e, data.id);
       let postText = document.getElementById(`postInfo-${data.id}`);
       postText.textContent = test;
     })
     .catch(console.warn);
 });
-// Posts loads on visiting the page
+
+//////////// fetches all the posts and loops over each creating a post for each
+
 function loadPosts(e) {
   fetch("https://small-talk-fp1.herokuapp.com/")
     .then((r) => r.json())
     .then((data) => {
-      // loop over our array and post each object
       for (let i = 0; i < data.length; i++) {
         fetchPost(e, data[i].id);
       }
     });
 }
 
+//////////// Creating post for each id in the server json file
+
+function fetchPost(e, id) {
+  e.preventDefault();
+  createPost(e, id);
+  const postText = document.getElementById(`postInfo-${id}`);
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
+    .then((r) => r.json())
+    .then((data) => (postText.textContent = data.text));
+}
+
+////////// Loads posts when the DOM is loaded
+
 document.addEventListener("DOMContentLoaded", (e) => {
   loadPosts(e);
 });
+
+/// creates the elements contained within the post
 
 function createPost(e, id) {
   e.preventDefault();
@@ -109,6 +123,7 @@ function createPost(e, id) {
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
+
   // Appendature
   postFooter.appendChild(reaction3);
   postFooter.appendChild(reaction1);
@@ -116,43 +131,21 @@ function createPost(e, id) {
   postFooter.appendChild(commentForm);
   commentForm.appendChild(commentBar);
   commentForm.appendChild(commentButton);
-
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
   headerContainer.appendChild(postText);
   newPost.appendChild(headerContainer);
   newPost.appendChild(postFooter);
-
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
   postText.appendChild(commentList);
-  //   console.log(postContainer);
   parentDiv.appendChild(postContainer);
-  //   document.getElementsByTagName("body")[0].appendChild(postContainer);
 
-  // Clear text content
+  // Clear Input, add randomName
+
   postContent.value = "";
-
-  // Populating details
-
   const name = randomNameGenerator();
   postName.textContent = name;
 }
-
-function fetchPost(e, id) {
-  e.preventDefault();
-  // Create new div
-
-  createPost(e, id);
-  const postText = document.getElementById(`postInfo-${id}`);
-  //   postText.textContent = postContent.value;
-  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
-    .then((r) => r.json())
-    .then((data) => (postText.textContent = data.text));
-}
-
-// function createComment() {
-//   postContent.appendChild("ssssssss");
-// }
 
 },{}]},{},[1]);
