@@ -3,7 +3,7 @@ const form = document.getElementById("form");
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
-
+const giphyForm = document.getElementById("giphyForm");
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -64,13 +64,29 @@ giphyForm.addEventListener("submit", (e) => {
   fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
     .then((response) => response.json())
     .then((json) => {
-      console.log(json.data);
       const randomInt = getRandomInt(0, json.data.length);
-      console.log(randomInt);
       const gif_url = json.data[randomInt].images.fixed_height.url;
+
+      // const options = {
+      //   method: "POST",
+      //   body: JSON.stringify(gif_url),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // };
+
+      // fetch(`https://small-talk-fp1.herokuapp.com/gifs/new`, options)
+      //   .then((r) => r.json())
+      //   .then((data) => {
+      //     let test = data.url;
+      //     test = gif_url;
+      //     // data.url = gif_url;
+      //   });
       let img = document.createElement("img");
       img.src = gif_url;
       parentDiv.appendChild(img);
+      const btn = getElementById("commentSubmit-2");
+      console.log(btn);
     })
     .catch((error) => (document.body.appendChild = error));
 });

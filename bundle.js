@@ -58,7 +58,7 @@ form.addEventListener("submit", (e) => {
 });
 
 ///////////////////// GIPHY FORM
-
+const giphyForm = document.getElementById("gifButton-random");
 giphyForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
