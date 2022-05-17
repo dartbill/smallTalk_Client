@@ -70,7 +70,19 @@ function fetchPost(e, id) {
   const postText = document.getElementById(`postInfo-${id}`);
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
-    .then((data) => (postText.textContent = data.text));
+    .then((data) => {
+      postText.textContent = data.text;
+
+      /// comments
+      const commentsArray = data.comments;
+      if (!data.comment) {
+        // TODO::::  Maybe send comment into createComment
+        commentsArray.forEach((comment, index) => {
+          createComment(id, index);
+        });
+      }
+    })
+    .catch(console.warn);
 }
 
 ////////// Loads posts when the DOM is loaded
@@ -98,6 +110,7 @@ function createPost(e, id) {
   const commentBar = document.createElement("textarea");
   const commentButton = document.createElement("input");
   const commentList = document.createElement("ul");
+  const commentArea = document.createElement("div");
 
   avatar.src =
     "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png";
@@ -122,6 +135,8 @@ function createPost(e, id) {
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
+  commentArea.className = "commentArea";
+  commentList.id = `comment-${id}`;
 
   // Appendature
   postFooter.appendChild(reaction3);
@@ -133,11 +148,13 @@ function createPost(e, id) {
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
   headerContainer.appendChild(postText);
+  commentArea.appendChild(commentList);
+  headerContainer.appendChild(commentArea);
   newPost.appendChild(headerContainer);
   newPost.appendChild(postFooter);
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
-  postText.appendChild(commentList);
+
   parentDiv.appendChild(postContainer);
 
   // Clear Input, add randomName
@@ -145,4 +162,17 @@ function createPost(e, id) {
   postContent.value = "";
   const name = randomNameGenerator();
   postName.textContent = name;
+}
+
+//// Create Comment
+
+function createComment(id, i) {
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
+    .then((r) => r.json())
+    .then((data) => {
+      const newLi = document.createElement("li");
+      newLi.textContent = data.comments[i];
+      const commentList = document.getElementById(`comment-${id}`);
+      commentList.appendChild(newLi);
+    });
 }
