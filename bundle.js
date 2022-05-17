@@ -131,11 +131,12 @@ function createPost(e, id) {
   reaction1.className = "material-icons";
   postContainer.className = "postFlex";
   commentForm.className = "commentForm";
-  commentForm.id = `postInfo-${id}`;
+  commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
+  commentButton.id = `commentSubmit-${id}`;
   commentArea.className = "commentArea";
   commentList.id = `comment-${id}`;
 
@@ -165,6 +166,16 @@ function createPost(e, id) {
   postName.textContent = name;
 }
 
+////////////////////////////// Comment area
+
+//// New Comment
+// function newComment(id) {
+//   commentQuery.addEventListener("submit", (e) => {
+//     e.preventDefault();
+//     console.log(e.target);
+//   });
+// }
+// newComment(1);
 //// Create Comment
 
 function createComment(id, i) {
