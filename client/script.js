@@ -3,7 +3,7 @@ const form = document.getElementById("form");
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
-
+const giphyForm = document.getElementById("giphyForm");
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -21,6 +21,12 @@ function randomNameGenerator() {
 
   return name;
 }
+
+////////// Loads posts when the DOM is loaded
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  loadPosts(e);
+});
 
 ////// Sending Data to herokuapp
 
@@ -50,6 +56,41 @@ form.addEventListener("submit", (e) => {
     .catch(console.warn);
 });
 
+///////////////////// GIPHY FORM
+
+giphyForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
+    .then((response) => response.json())
+    .then((json) => {
+      const randomInt = getRandomInt(0, json.data.length);
+      const gif_url = json.data[randomInt].images.fixed_height.url;
+
+      // const options = {
+      //   method: "POST",
+      //   body: JSON.stringify(gif_url),
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // };
+
+      // fetch(`https://small-talk-fp1.herokuapp.com/gifs/new`, options)
+      //   .then((r) => r.json())
+      //   .then((data) => {
+      //     let test = data.url;
+      //     test = gif_url;
+      //     // data.url = gif_url;
+      //   });
+      let img = document.createElement("img");
+      img.src = gif_url;
+      parentDiv.appendChild(img);
+      const btn = getElementById("commentSubmit-2");
+      console.log(btn);
+    })
+    .catch((error) => (document.body.appendChild = error));
+});
+
 //////////// fetches all the posts and loops over each creating a post for each
 
 function loadPosts(e) {
@@ -67,6 +108,7 @@ function loadPosts(e) {
 function fetchPost(e, id) {
   e.preventDefault();
   createPost(e, id);
+
   const postText = document.getElementById(`postInfo-${id}`);
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
@@ -85,12 +127,6 @@ function fetchPost(e, id) {
     .catch(console.warn);
 }
 
-////////// Loads posts when the DOM is loaded
-
-document.addEventListener("DOMContentLoaded", (e) => {
-  loadPosts(e);
-});
-
 /// creates the elements contained within the post
 
 function createPost(e, id) {
@@ -106,6 +142,7 @@ function createPost(e, id) {
   const reaction1 = document.createElement("span");
   const reaction2 = document.createElement("span");
   const reaction3 = document.createElement("span");
+
   const commentForm = document.createElement("form");
   const commentBar = document.createElement("textarea");
   const commentButton = document.createElement("input");
@@ -122,6 +159,7 @@ function createPost(e, id) {
   postText.className = "post_headerDescription";
   postText.id = `postInfo-${id}`;
   postFooter.className = "post_footer";
+  postFooter.id = `post_footer-${id}`;
   reaction1.textContent = "sentiment_very_satisfied";
   reaction2.textContent = "sentiment_dissatisfied";
   reaction3.textContent = "thumb_up";
@@ -129,6 +167,7 @@ function createPost(e, id) {
   reaction3.className = "material-icons";
   reaction1.className = "material-icons";
   postContainer.className = "postFlex";
+
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
@@ -137,12 +176,14 @@ function createPost(e, id) {
   commentButton.textContent = "Post";
   commentButton.id = `commentSubmit-${id}`;
   commentArea.className = "commentArea";
+  commentList.className = "commentList";
   commentList.id = `comment-${id}`;
 
   // Appendature
   postFooter.appendChild(reaction3);
   postFooter.appendChild(reaction1);
   postFooter.appendChild(reaction2);
+
   postFooter.appendChild(commentForm);
   commentForm.appendChild(commentBar);
   commentForm.appendChild(commentButton);
@@ -187,3 +228,5 @@ function createComment(id, i) {
       commentList.appendChild(newLi);
     });
 }
+
+///////////// Fetch
