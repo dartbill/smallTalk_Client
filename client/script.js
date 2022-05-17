@@ -4,6 +4,7 @@ const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
 const giphyForm = document.getElementById("giphyForm");
+const commentForm = document.getElementById("commentForm");
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -148,9 +149,9 @@ function createPost(e, id) {
   const headerContainer = document.createElement("div");
   const postName = document.createElement("h3");
   const postFooter = document.createElement("div");
-  const reaction1 = document.createElement("span");
-  const reaction2 = document.createElement("span");
-  const reaction3 = document.createElement("span");
+  const reaction1 = document.createElement("button");
+  const reaction2 = document.createElement("button");
+  const reaction3 = document.createElement("button");
 
   const commentForm = document.createElement("form");
   const commentBar = document.createElement("textarea");
@@ -175,12 +176,16 @@ function createPost(e, id) {
   reaction2.className = "material-icons";
   reaction3.className = "material-icons";
   reaction1.className = "material-icons";
+  reaction1.id = `like-${id}`;
+  reaction2.id = `smile-${id}`;
+  reaction3.id = `sad-${id}`;
   postContainer.className = "postFlex";
 
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
   commentBar.id = `commentTextarea-${id}`;
+  commentBar.maxLength = "20";
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
@@ -217,11 +222,16 @@ function createPost(e, id) {
 }
 
 ////////////////////////////// Comment area
+commentForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-function getcommentinput() {
-  console.log(document.querySelector(".postComments").value);
+  getcommentinput(e);
+});
+
+function getcommentinput(e) {
+  console.log(e.target.commentPost.value);
   const postData = {
-    // comments: e.target.postComments.value,
+    comments: e.target.commentPost.value,
   };
 
   const options = {
@@ -229,19 +239,18 @@ function getcommentinput() {
     body: JSON.stringify(postData),
     headers: {
       "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
     },
   };
   fetch(`https://small-talk-fp1.herokuapp.com/2`, options)
     .then((r) => r.json())
     .then((data) => {
       const array = data;
-      console.log(data);
       array.push(postData.comments);
-      console.log(data);
     });
 }
-
-getcommentinput();
 
 function createComment(id, i) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)

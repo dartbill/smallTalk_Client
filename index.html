@@ -84,7 +84,7 @@
               src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
               alt=""
             />
-            <input id="journalPost" type="text" placeholder="What's happnin?" name="post"/>
+            <input id="journalPost" type="text" placeholder="What's happnin?" maxlength="100" name="post"/>
           </div>
           
           <input id="postButton" type="submit" class="tweetBox_tweetButton" value="Push" name="post">
@@ -100,6 +100,16 @@
           
           <input id="gifButton-random" type="submit" class="tweetBox_tweetButton" value="Gif Me" name="random">
         
+        </form>
+        <form id ="commentForm">
+          <div class="tweetbox_input">
+            <img
+              src="https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png"
+              alt=""
+            />
+            <input id="commentPost" type="text" placeholder="Comment on a Post!" name="comment"/>
+          </div>
+          <input id="commentSub" type="submit" class="tweetBox_tweetButton" value="Gif Me" name="comment">
         </form>
       </div>
       <!-- tweetbox ends -->
