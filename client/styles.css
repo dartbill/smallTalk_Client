@@ -223,3 +223,17 @@ body {
 .postComments {
   padding: 2px;
 }
+
+.commentList {
+  list-style-type: none;
+  margin-left: 10px;
+}
+
+.commentList > li::before {
+  content: "--  ";
+  padding: 1px;
+}
+
+#giphyForm {
+  border-top: solid 1px black;
+}
