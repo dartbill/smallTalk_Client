@@ -37,6 +37,8 @@ form.addEventListener("submit", (e) => {
 
   const postData = {
     text: e.target.journalPost.value,
+    react: [0, 0, 0],
+    comments: [],
   };
   const options = {
     method: "POST",
@@ -272,6 +274,7 @@ function createPost(e, id) {
 // });
 
 function getcommentinput(e, id) {
+  e.preventDefault();
   console.log(e);
   console.log(e.target[0].value);
   // console.log(id);
