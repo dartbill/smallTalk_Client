@@ -187,7 +187,9 @@ function createPost(e, id) {
   commentBar.maxLength = "20";
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
-  commentForm.addEventListener("submit", getcommentinput);
+  commentForm.addEventListener("submit", (e) => {
+    getcommentinput(e, id);
+  });
   commentButton.textContent = "Post";
   commentButton.id = `commentSubmit-${id}`;
   commentArea.className = "commentArea";
@@ -223,17 +225,22 @@ function createPost(e, id) {
 
 ////////////////////////////// Comment area
 
-commentForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  getcommentinput(e);
-});
+// commentForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   getcommentinput(e);
+// });
 
 function getcommentinput(e, id) {
-  e.preventDefault(e);
-  console.log(e.target.commentTextarea1.value);
-  console.log(e.target);
+  console.log(e);
+  console.log(e.target[0].value);
+  // console.log(id);
+  // console.log(`commentTextarea${id}`);
+  // const commentInputId = `commentTextarea${id}`;
+  // const commentInput = commentInputId.value;
+  // console.log(commentInput);
+
   const postData = {
-    comments: e.target.commentTextarea1.value,
+    comments: e.target[0].value,
   };
 
   const options = {
