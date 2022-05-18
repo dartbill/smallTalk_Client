@@ -148,9 +148,38 @@ function createPost(e, id) {
   const headerContainer = document.createElement("div");
   const postName = document.createElement("h3");
   const postFooter = document.createElement("div");
+  const reactionContainer = document.createElement("div");
+  const reaction1Counter = document.createElement("div");
+  const reaction2Counter = document.createElement("div");
+  const reaction3Counter = document.createElement("div");
   const reaction1 = document.createElement("button");
   const reaction2 = document.createElement("button");
   const reaction3 = document.createElement("button");
+
+  // reaction1Counter.appendChild(reaction1);
+  // reaction2Counter.appendChild(reaction2);
+  // reaction3Counter.appendChild(reaction3);
+  reactionContainer.append(
+    reaction1Counter,
+    reaction2Counter,
+    reaction3Counter,
+    reaction1,
+    reaction2,
+    reaction3
+  );
+
+  reaction1Counter.textContent = "0";
+  reaction2Counter.textContent = "0";
+  reaction3Counter.textContent = "0";
+  reaction1Counter.id = `reaction${id}Counter1`;
+  reaction2Counter.id = `reaction${id}Counter2`;
+  reaction3Counter.id = `reaction${id}Counter3`;
+  // reactionContainer.appendChild(reaction2);
+  // reactionContainer.appendChild(reaction3);
+
+  //   <div class="item">counter = <span class="count">0</span></div>
+  // <div class="item">counter = <span class="count">0</span></div>
+  // <div class="item">counter = <span class="count">0</span></div>
 
   const commentForm = document.createElement("form");
   const commentBar = document.createElement("textarea");
@@ -169,15 +198,26 @@ function createPost(e, id) {
   postText.id = `postInfo-${id}`;
   postFooter.className = "post_footer";
   postFooter.id = `post_footer-${id}`;
+
   reaction1.textContent = "sentiment_very_satisfied";
   reaction2.textContent = "sentiment_dissatisfied";
   reaction3.textContent = "thumb_up";
+  reaction1.addEventListener("click", (e) => {
+    reactCounterSmile(e, id);
+  });
+  reaction2.addEventListener("click", (e) => {
+    reactCounterSad(e, id);
+  });
+  reaction3.addEventListener("click", (e) => {
+    reactCounterLike(e, id);
+  });
   reaction2.className = "material-icons";
   reaction3.className = "material-icons";
   reaction1.className = "material-icons";
   reaction3.id = `like-${id}`;
   reaction1.id = `smile-${id}`;
   reaction2.id = `sad-${id}`;
+  reactionContainer.className = "reactionContainer";
   postContainer.className = "postFlex";
 
   commentForm.className = "commentForm";
@@ -197,10 +237,10 @@ function createPost(e, id) {
   commentList.id = `comment-${id}`;
 
   // Appendature
-  postFooter.appendChild(reaction3);
-  postFooter.appendChild(reaction1);
-  postFooter.appendChild(reaction2);
-
+  // postFooter.appendChild(reaction3);
+  // postFooter.appendChild(reaction1);
+  // postFooter.appendChild(reaction2);
+  postFooter.appendChild(reactionContainer);
   postFooter.appendChild(commentForm);
   commentForm.appendChild(commentBar);
   commentForm.appendChild(commentButton);
@@ -273,8 +313,39 @@ function createComment(id, i) {
 }
 
 ////////// emoji counter
-
-const likeBtn = document.querySelector("#posts");
-console.log(likeBtn);
-
+function reactCounterLike(e, id) {
+  e.preventDefault();
+  const buttonLike = document.getElementById(`like-${id}`);
+  const buttonLikeCounter = document.getElementById(`reaction${id}Counter1`);
+  console.log(buttonLike, buttonLikeCounter);
+  let counter = parseInt(buttonLikeCounter.textContent);
+  counter++;
+  console.log(counter);
+  // Now we are going to fetch react array and update
+  buttonLikeCounter.textContent = counter;
+}
 /////////
+
+function reactCounterSmile(e, id) {
+  e.preventDefault();
+  const buttonSmile = document.getElementById(`smile-${id}`);
+  const buttonSmileCounter = document.getElementById(`reaction${id}Counter2`);
+  console.log(buttonSmile, buttonSmileCounter);
+  let counter = parseInt(buttonSmileCounter.textContent);
+  counter++;
+  console.log(counter);
+  // Now we are going to fetch react array and update
+  buttonSmileCounter.textContent = counter;
+}
+
+function reactCounterSad(e, id) {
+  e.preventDefault();
+  const buttonSad = document.getElementById(`sad-${id}`);
+  const buttonSadCounter = document.getElementById(`reaction${id}Counter3`);
+  console.log(buttonSad, buttonSadCounter);
+  let counter = parseInt(buttonSadCounter.textContent);
+  counter++;
+  console.log(counter);
+  // Now we are going to fetch react array and update
+  buttonSadCounter.textContent = counter;
+}
