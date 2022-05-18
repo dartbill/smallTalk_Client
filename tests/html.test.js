@@ -39,6 +39,15 @@ describe('index.html', () => {
     })
   })
 
+  // has Submit button 
+        describe('html', () => {
+            test('it has a submit button', () => {
+                let postButton = document.getElementsByClassName('postButton');
+                expect(postButton).toBeTruthy();
+            })
+
+        })
+
     // Gif Testing
     describe('body', () => {
       it('it has a random gif button', () => {
@@ -48,46 +57,9 @@ describe('index.html', () => {
     })
 
 
-
 })
 
-
-
-// describe('index.html', () => {
-//   test('it has a title', () => {
-//     document.documentElement.innerHTML = html.toString()
-//     const title = document.querySelector('title')
-//     expect(title.textContent).toContain('Small Talk')
-//   })
-// })
-
-// describe("Dom Environment", () => {
-//   beforeEach(() => {
-//     document.documentElement.innerHTML = html.toString();
-//   });
-
-//   test("it has a header title", () => {
-//     let header = document.querySelector("header");
-//     expect(header.textContent).toContain("Small Talk");
-//   });
-// });
-
-// describe("index.html", () => {
-//   beforeEach(() => {
-//     document.documentElement.innerHTML = html.toString();
-//   });
-
-//   test("it has a header title", () => {
-//     let header = document.querySelector("header");
-//     expect(header.textContent).toContain("Small Talk");
-//   });
-// });
-
-
-// describe("head", () => {
-//   let title;
-//   test("it has a title", () => {
-//     title = document.querySelector("title");
-//     expect(title).toBeTruthy();
-//   });
-// });
+test('use jsdom in this test file', () => {
+  const element = document.createElement('div');
+  expect(element).not.toBeNull();
+});
