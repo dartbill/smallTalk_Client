@@ -246,8 +246,6 @@ function createPost(e, id) {
 
 function getcommentinput(e, id) {
   e.preventDefault();
-  console.log(e);
-  console.log(e.target[0].value);
   const postData = {
     comments: e.target[0].value,
   };
@@ -385,7 +383,6 @@ function gifReact(e, id) {
     .then((json) => {
       const randomInt = getRandomInt(0, json.data.length);
       const gif_url = json.data[randomInt].images.fixed_height.url;
-      console.log(gif_url);
 
       const giphyData = {
         url: gif_url,
@@ -409,15 +406,16 @@ function gifReact(e, id) {
           let test = data.url;
           test = gif_url;
           data.url = gif_url;
+          const commentArea = document.getElementById(`comment-${id}`);
+          const newLi = document.createElement("li");
+          const gifimg = document.createElement("img");
+          gifimg.className = `gifimg`;
+          gifimg.id = `gif-${data.id}`;
+          console.log(gifimg.id);
+          gifimg.src = gif_url;
+          newLi.appendChild(gifimg);
+          commentArea.appendChild(newLi);
         });
-      console.log(data.id);
-      const commentArea = document.getElementById(`comment-${id}`);
-      const newLi = document.createElement("li");
-      const gifimg = document.createElement("img");
-      gifimg.id = `gif-${data.id}`;
-      gifimg.src = gif_url;
-      newLi.appendChild(gifimg);
-      commentArea.appendChild(newLi);
     })
     .catch(console.warn);
 }
