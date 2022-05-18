@@ -316,22 +316,35 @@ function createComment(id, i) {
 ////////// emoji counter
 function reactCounterLike(e, id) {
   e.preventDefault();
-  const buttonLike = document.getElementById(`like-${id}`);
   const buttonLikeCounter = document.getElementById(`reaction${id}Counter1`);
-  console.log(buttonLike, buttonLikeCounter);
+  console.log(buttonLikeCounter);
   let counter = parseInt(buttonLikeCounter.textContent);
   counter++;
   console.log(counter);
   // Now we are going to fetch react array and update
   buttonLikeCounter.textContent = counter;
+
+  /// patch the react count to a new route
+  const likeData = {};
+
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify(likeData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  fetch("url", options)
+    .then((r) => r.json)
+    .then((data) => console.log(data));
 }
 /////////
 
 function reactCounterSmile(e, id) {
   e.preventDefault();
-  const buttonSmile = document.getElementById(`smile-${id}`);
   const buttonSmileCounter = document.getElementById(`reaction${id}Counter2`);
-  console.log(buttonSmile, buttonSmileCounter);
+  console.log(buttonSmileCounter);
   let counter = parseInt(buttonSmileCounter.textContent);
   counter++;
   console.log(counter);
@@ -341,9 +354,8 @@ function reactCounterSmile(e, id) {
 
 function reactCounterSad(e, id) {
   e.preventDefault();
-  const buttonSad = document.getElementById(`sad-${id}`);
   const buttonSadCounter = document.getElementById(`reaction${id}Counter3`);
-  console.log(buttonSad, buttonSadCounter);
+  console.log(buttonSadCounter);
   let counter = parseInt(buttonSadCounter.textContent);
   counter++;
   console.log(counter);
