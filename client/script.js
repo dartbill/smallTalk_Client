@@ -183,10 +183,11 @@ function createPost(e, id) {
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
-  commentBar.id = `commentTextarea-${id}`;
+  commentBar.id = `commentTextarea${id}`;
   commentBar.maxLength = "20";
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
+  commentForm.addEventListener("submit", getcommentinput);
   commentButton.textContent = "Post";
   commentButton.id = `commentSubmit-${id}`;
   commentArea.className = "commentArea";
@@ -224,15 +225,15 @@ function createPost(e, id) {
 
 commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   getcommentinput(e);
 });
 
-function getcommentinput(e) {
-  console.log(e.target.commentPost.value);
+function getcommentinput(e, id) {
+  e.preventDefault(e);
+  console.log(e.target.commentTextarea1.value);
+  console.log(e.target);
   const postData = {
-    comments: e.target.commentPost.value,
-    react: 1,
+    comments: e.target.commentTextarea1.value,
   };
 
   const options = {
@@ -245,7 +246,7 @@ function getcommentinput(e) {
       "Access-Control-Allow-Methods": "*",
     },
   };
-  fetch(`https://small-talk-fp1.herokuapp.com/2`, options)
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options)
     .then((r) => r.json())
     .then((data) => {
       const array = data;
