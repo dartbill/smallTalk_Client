@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "jest-environment-jsdom": "^28.1.0",
     "package-lock.json": "^1.0.0",
     "package.json": "^2.0.1"
   }

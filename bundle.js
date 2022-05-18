@@ -4,7 +4,7 @@ const form = document.getElementById("form");
 const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
-
+const giphyForm = document.getElementById("giphyForm");
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -58,23 +58,48 @@ form.addEventListener("submit", (e) => {
 });
 
 ///////////////////// GIPHY FORM
-const giphyForm = document.getElementById("gifButton-random");
-giphyForm.addEventListener("submit", (e) => {
-  e.preventDefault();
 
-  fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json.data);
-      const randomInt = getRandomInt(0, json.data.length);
-      console.log(randomInt);
-      const gif_url = json.data[randomInt].images.fixed_height.url;
-      let img = document.createElement("img");
-      img.src = gif_url;
-      parentDiv.appendChild(img);
-    })
-    .catch((error) => (document.body.appendChild = error));
-});
+// giphyForm.addEventListener("submit", (e) => {
+//   e.preventDefault();
+
+//   fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
+//     .then((response) => response.json())
+//     .then((json) => {
+//       const randomInt = getRandomInt(0, json.data.length);
+//       const gif_url = json.data[randomInt].images.fixed_height.url;
+
+//       const giphyData = {
+//         url: gif_url,
+//       };
+
+//       const options = {
+//         method: "POST",
+//         mode: "cors",
+//         body: JSON.stringify(giphyData),
+//         headers: {
+//           "Content-Type": "application/json",
+//           Accept: "application/json",
+//           "Access-Control-Allow-Origin": "*",
+//           "Access-Control-Allow-Methods": "*",
+//         },
+//       };
+
+//       fetch(`https://small-talk-fp1.herokuapp.com/gifs/new`, options)
+//         .then((r) => r.json())
+//         .then((data) => {
+//           let test = data.url;
+//           test = gif_url;
+//           // data.url = gif_url;
+//         });
+//       // Change to iframe
+//       // let img = document.createElement("img");
+//       // img.src = gif_url;
+//       // parentDiv.appendChild(img);
+//       // const btn = getElementById("commentSubmit-2");
+//       // console.log(btn);
+//     })
+//     .catch(console.warn);
+// });
 
 //////////// fetches all the posts and loops over each creating a post for each
 
@@ -156,6 +181,7 @@ function createPost(e, id) {
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
+  commentBar.id = `commentTextarea-${id}`;
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentButton.textContent = "Post";
@@ -193,15 +219,30 @@ function createPost(e, id) {
 
 ////////////////////////////// Comment area
 
-//// New Comment
-// function newComment(id) {
-//   commentQuery.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     console.log(e.target);
-//   });
-// }
-// newComment(1);
-//// Create Comment
+function getcommentinput() {
+  console.log(document.querySelector(".postComments").value);
+  const postData = {
+    // comments: e.target.postComments.value,
+  };
+
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify(postData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  fetch(`https://small-talk-fp1.herokuapp.com/2`, options)
+    .then((r) => r.json())
+    .then((data) => {
+      const array = data;
+      console.log(data);
+      array.push(postData.comments);
+      console.log(data);
+    });
+}
+
+getcommentinput();
 
 function createComment(id, i) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
