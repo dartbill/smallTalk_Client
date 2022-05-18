@@ -4,7 +4,7 @@ const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
 const giphyForm = document.getElementById("giphyForm");
-const commentForm = document.getElementById("commentForm");
+
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -121,6 +121,9 @@ function fetchPost(e, id) {
   e.preventDefault();
   createPost(e, id);
   const postText = document.getElementById(`postInfo-${id}`);
+  const buttonLikeCounter = document.getElementById(`reaction${id}Counter1`);
+  const buttonSmileCounter = document.getElementById(`reaction${id}Counter2`);
+  const buttonSadCounter = document.getElementById(`reaction${id}Counter3`);
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
     .then((data) => {
@@ -134,6 +137,11 @@ function fetchPost(e, id) {
           createComment(id, index);
         });
       }
+      console.log();
+      /// Fetch Reacts from server
+      buttonLikeCounter.textContent = data.react[0];
+      buttonSmileCounter.textContent = data.react[1];
+      buttonSadCounter.textContent = data.react[2];
     })
     .catch(console.warn);
 }
@@ -265,23 +273,12 @@ function createPost(e, id) {
   postName.textContent = name;
 }
 
-////////////////////////////// Comment area
-
-// commentForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   getcommentinput(e);
-// });
+///////////////////////////// Comments
 
 function getcommentinput(e, id) {
   e.preventDefault();
   console.log(e);
   console.log(e.target[0].value);
-  // console.log(id);
-  // console.log(`commentTextarea${id}`);
-  // const commentInputId = `commentTextarea${id}`;
-  // const commentInput = commentInputId.value;
-  // console.log(commentInput);
-
   const postData = {
     comments: e.target[0].value,
   };
@@ -302,6 +299,7 @@ function getcommentinput(e, id) {
       const array = data;
       array.push(postData.comments);
     });
+  e.target[0].value = "";
 }
 
 function createComment(id, i) {
@@ -339,7 +337,7 @@ function reactCounterLike(e, id) {
     },
   };
 
-  fetch(`https://small-talk-fp1.herokuapp.com/react/${id}`, options)
+  fetch(`https://small-talk-fp1.herokuapp.com/react1/${id}`, options)
     .then((r) => r.json())
     .then((data) => {
       console.log("This is from fetch", data);
@@ -358,6 +356,25 @@ function reactCounterSmile(e, id) {
   console.log(counter);
   // Now we are going to fetch react array and update
   buttonSmileCounter.textContent = counter;
+  const likeData = {
+    react: counter,
+  };
+
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify(likeData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  fetch(`https://small-talk-fp1.herokuapp.com/react2/${id}`, options)
+    .then((r) => r.json())
+    .then((data) => {
+      console.log("This is from fetch", data);
+      data = likeData;
+      console.log(data);
+    });
 }
 
 function reactCounterSad(e, id) {
@@ -369,4 +386,23 @@ function reactCounterSad(e, id) {
   console.log(counter);
   // Now we are going to fetch react array and update
   buttonSadCounter.textContent = counter;
+  const likeData = {
+    react: counter,
+  };
+
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify(likeData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  fetch(`https://small-talk-fp1.herokuapp.com/react3/${id}`, options)
+    .then((r) => r.json())
+    .then((data) => {
+      console.log("This is from fetch", data);
+      data = likeData;
+      console.log(data);
+    });
 }
