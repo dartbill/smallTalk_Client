@@ -274,10 +274,22 @@ function createComment(id, i) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
     .then((data) => {
+      const result = data.comments[i];
+      console.log(result);
       const newLi = document.createElement("li");
-      newLi.textContent = data.comments[i];
       const commentList = document.getElementById(`comment-${id}`);
-      commentList.appendChild(newLi);
+      if (!result.includes("https://media")) {
+        newLi.textContent = data.comments[i];
+
+        commentList.appendChild(newLi);
+      } else {
+        const gifimg = document.createElement("img");
+        gifimg.className = `gifimg`;
+        gifimg.id = `gif-${id}`;
+        gifimg.src = data.comments[i];
+        newLi.appendChild(gifimg);
+        commentList.appendChild(newLi);
+      }
     });
 }
 
@@ -379,6 +391,7 @@ function reactCounterSad(e, id) {
 
 function gifReact(e, id) {
   e.preventDefault();
+
   fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
     .then((response) => response.json())
     .then((json) => {
@@ -404,9 +417,8 @@ function gifReact(e, id) {
       fetch(`https://small-talk-fp1.herokuapp.com/gifs/new`, options)
         .then((r) => r.json())
         .then((data) => {
-          let test = data.url;
-          test = gif_url;
-          data.url = gif_url;
+          const gif_url = data.url;
+
           const commentArea = document.getElementById(`comment-${id}`);
           const newLi = document.createElement("li");
           const gifimg = document.createElement("img");
@@ -416,6 +428,27 @@ function gifReact(e, id) {
           gifimg.src = gif_url;
           newLi.appendChild(gifimg);
           commentArea.appendChild(newLi);
+
+          const gifData = {
+            comments: gif_url,
+          };
+          const options2 = {
+            method: "PATCH",
+            body: JSON.stringify(gifData),
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "*",
+            },
+          };
+          fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options2)
+            .then((r) => r.json())
+            .then((data) => {
+              console.log(data);
+              const array = data;
+              array.push(gifData.comments);
+            });
         });
     })
     .catch(console.warn);
