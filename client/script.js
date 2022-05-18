@@ -152,6 +152,33 @@ function createPost(e, id) {
     gifReact(e, id);
   });
 
+  // Giphy Search Feature
+  const giphySearch = document.createElement("input");
+  giphySearch.setAttribute("type", "text");
+  giphySearch.maxLength = "20";
+  giphySearch.name = "searchGif";
+  giphySearch.id = `searchGif-${id}`;
+  giphySearch.class = "postComments";
+  const giphyPreview = document.createElement("button");
+  giphyPreview.id = `previewBtnGif-${id}`;
+  giphyPreview.textContent = `Preview Your Giphy`;
+  giphyPreview.name = "searchGif";
+  giphyPreview.addEventListener("click", (e) => {
+    previewGif(e, id);
+  });
+  const giphySubmit = document.createElement("button");
+  giphySubmit.id = `searchBtnGif-${id}`;
+  giphySubmit.textContent = `Submit Your Giphy`;
+  giphySubmit.name = "searchGif";
+  giphySubmit.addEventListener("click", (e) => {
+    submitGif(e, id);
+  });
+
+  const gifDisplay = document.createElement("div");
+  gifDisplay.id = "gifDisplay";
+
+  postFooter.append();
+
   // reactionContainer.appendChild(reaction2);
   // reactionContainer.appendChild(reaction3);
 
@@ -197,7 +224,7 @@ function createPost(e, id) {
   reaction2.id = `sad-${id}`;
   reactionContainer.className = "reactionContainer";
   postContainer.className = "postFlex";
-
+  commentForm.appendChild(gifDisplay);
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
@@ -223,6 +250,7 @@ function createPost(e, id) {
   commentForm.appendChild(commentBar);
   commentForm.appendChild(commentButton);
   commentForm.appendChild(gifBtn);
+  commentForm.append(giphySearch, giphyPreview, giphySubmit);
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
   headerContainer.appendChild(postText);
@@ -274,7 +302,7 @@ function createComment(id, i) {
     .then((r) => r.json())
     .then((data) => {
       const result = data.comments[i];
-      console.log(result);
+
       const newLi = document.createElement("li");
       const commentList = document.getElementById(`comment-${id}`);
       if (!result.includes("https://media")) {
@@ -451,4 +479,39 @@ function gifReact(e, id) {
         });
     })
     .catch(console.warn);
+}
+// https:api.giphy.com/v1/gifs/search?api_key=qjWg9FdUGKToLMDWBaH9DiHGLVAsmTMj&q=${searchTerm}&limit=10&offset=0&rating=g&lang=en
+
+function previewGif(e, id) {
+  e.preventDefault();
+
+  const searchQuery = document.getElementById(`searchGif-${id}`);
+  const gifDisplay = document.getElementById("gifDisplay");
+
+  if (!gifDisplay.firstChild) {
+    if (searchQuery.value == "") {
+      prompt("No gif selected!");
+    } else {
+      fetch(
+        `https://api.giphy.com/v1/gifs/search?api_key=${API_Key}&q=` +
+          searchQuery.value.replaceAll(" ", "+").toLowerCase()
+      )
+        .then((r) => r.json())
+        .then((data) => {
+          const randomInt = getRandomInt(0, data.data.length);
+          const gif_url = data.data[randomInt].images.fixed_height_small.url;
+          const gif = document.createElement("img");
+          gif.style.width = "100px";
+          gif.style.height = "100px";
+          gif.src = gif_url;
+          gifDisplay.appendChild(gif);
+        });
+    }
+  } else {
+    gifDisplay.removeChild(gifDisplay.firstChild);
+  }
+}
+
+function submitGif(e, id) {
+  e.preventDefault();
 }
