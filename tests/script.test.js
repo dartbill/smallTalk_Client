@@ -1,17 +1,33 @@
-const fs = require("fs");
-const path = require("path");
-const html = fs.readFileSync(
-  path.resolve(__dirname, "../client/index.html"),
-  "utf8"
-);
+/**
+ * @jest-environment jsdom
+ */
 
-describe("Dom Environment", () => {
-  beforeEach(() => {
-    document.documentElement.innerHTML = html.toString();
-  });
+ const fs = require("fs");
+ const path = require("path");
+ const html = fs.readFileSync(
+   path.resolve(__dirname, "../index.html"),
+   "utf8"
+ );
 
-  test("it has a header title", () => {
-    let header = document.querySelector("header");
-    expect(header.textContent).toContain("JavaScript in the Browser");
-  });
-});
+//  describe('script.js', () => {
+//     beforeEach(() => {
+//       document.documentElement.innerHTML = html.toString()
+//       console.log('will run before every test')
+//     })
+//     describe('head', () => {
+//       test('it has a title', () => {
+//         const title = document.querySelector('title')
+//         expect(title.textContent).toContain('Small Talk')
+//       })
+//     })
+
+//  })
+
+
+ 
+
+
+
+
+
+

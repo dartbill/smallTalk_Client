@@ -5,7 +5,7 @@ const annoynmousName = document.getElementById("userName");
 const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
 const giphyForm = document.getElementById("giphyForm");
-
+  
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -59,6 +59,7 @@ form.addEventListener("submit", (e) => {
     })
     .catch(console.warn);
 });
+
 
 //////////// fetches all the posts and loops over each creating a post for each
 
@@ -202,8 +203,10 @@ function createPost(e, id) {
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
+
   commentBar.id = `commentTextarea${id}`;
   commentBar.maxLength = "20";
+
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentForm.addEventListener("submit", (e) => {
@@ -256,6 +259,7 @@ function getcommentinput(e, id) {
     body: JSON.stringify(postData),
     headers: {
       "Content-Type": "application/json",
+
       Accept: "application/json",
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "*",
@@ -269,6 +273,7 @@ function getcommentinput(e, id) {
     });
   e.target[0].value = "";
 }
+
 
 function createComment(id, i) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
