@@ -234,6 +234,7 @@ body {
   padding: 1px;
 }
 
-#giphyForm {
-  border-top: solid 1px black;
+.gifimg {
+  width: 200px;
+  height: 200px;
 }
