@@ -325,7 +325,9 @@ function reactCounterLike(e, id) {
   buttonLikeCounter.textContent = counter;
 
   /// patch the react count to a new route
-  const likeData = {};
+  const likeData = {
+    react: counter,
+  };
 
   const options = {
     method: "PATCH",
@@ -335,9 +337,13 @@ function reactCounterLike(e, id) {
     },
   };
 
-  fetch("url", options)
-    .then((r) => r.json)
-    .then((data) => console.log(data));
+  fetch(`https://small-talk-fp1.herokuapp.com/react/${id}`, options)
+    .then((r) => r.json())
+    .then((data) => {
+      console.log("This is from fetch", data);
+      data = likeData;
+      console.log(data);
+    });
 }
 /////////
 
