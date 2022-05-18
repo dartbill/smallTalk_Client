@@ -9,13 +9,11 @@ const html = fs.readFileSync(
   "utf8"
 );
 
-describe("Dom Environment", () => {
-  beforeEach(() => {
-    document.documentElement.innerHTML = html.toString();
-  });
+describe('index.html', () => {
+  test('it has a title', () => {
+    document.documentElement.innerHTML = html.toString()
+    const title = document.querySelector('title')
+    expect(title.textContent).toContain('Small Talk')
+  })
+})
 
-  test("it has a header title", () => {
-    let header = document.querySelector("header");
-    expect(header.textContent).toContain("Small Talk");
-  });
-});
