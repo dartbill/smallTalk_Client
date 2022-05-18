@@ -15,6 +15,13 @@ body {
   cursor: pointer;
 }
 
+.sidebarOption:not(:last-child) {
+  margin-bottom: 5px;
+}
+.sidebarOption:nth-of-type(1) {
+  margin-top: 20px;
+}
+
 .sidebarOption .material-icons,
 .fa-twitter {
   padding: 20px;
@@ -117,11 +124,16 @@ body {
   padding-right: 10px;
 }
 
-.tweetBox form {
+.tweetBox {
   display: flex;
   flex-direction: column;
 }
-
+#form {
+  display: flex;
+  height: 120px;
+  align-items: center;
+  border-bottom: solid 2px #e6ecf0;
+}
 .tweetbox_input {
   display: flex;
   padding: 20px;
@@ -143,8 +155,9 @@ body {
   border-radius: 30px;
   width: 80px;
   height: 40px;
-  margin-top: 20px;
-  margin-left: auto;
+  margin-top: 15px;
+  margin-left: 40px;
+  justify-self: center;
   transition: all 0.2s;
 }
 
@@ -272,4 +285,8 @@ body {
 .gifimg {
   width: 200px;
   height: 200px;
+}
+
+.commentForm {
+  flex-direction: row;
 }

@@ -165,6 +165,11 @@ function createPost(e, id) {
   const reaction2 = document.createElement("button");
   const reaction3 = document.createElement("button");
 
+  const commentContainer = document.createElement("div");
+  commentContainer.className = "commentContainer";
+
+  const gifCommentContainer = document.createElement("div");
+  gifCommentContainer.className = "gifCommentContainer";
   // reaction1Counter.appendChild(reaction1);
   // reaction2Counter.appendChild(reaction2);
   // reaction3Counter.appendChild(reaction3);
@@ -270,7 +275,7 @@ function createPost(e, id) {
   reaction2.id = `sad-${id}`;
   reactionContainer.className = "reactionContainer";
   postContainer.className = "postFlex";
-  commentForm.appendChild(gifDisplay);
+
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
@@ -291,12 +296,12 @@ function createPost(e, id) {
   // postFooter.appendChild(reaction3);
   // postFooter.appendChild(reaction1);
   // postFooter.appendChild(reaction2);
+  gifCommentContainer.append(giphySearch, giphyPreview, giphySubmit);
+  commentContainer.append(commentBar, commentButton, gifBtn);
   postFooter.appendChild(reactionContainer);
   postFooter.appendChild(commentForm);
-  commentForm.appendChild(commentBar);
-  commentForm.appendChild(commentButton);
-  commentForm.appendChild(gifBtn);
-  commentForm.append(giphySearch, giphyPreview, giphySubmit);
+
+  commentForm.append(commentContainer, gifCommentContainer, gifDisplay);
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
   headerContainer.appendChild(postText);
