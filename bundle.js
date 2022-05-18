@@ -10,8 +10,51 @@ const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
 
-const titleName = ["Lord", "The Common", "King", "The Divine"];
-const subName = ["Apple", "Fish", "Salt", "Pepper"];
+const titleName = [
+  "Lord",
+  "The Common",
+  "King",
+  "The Divine",
+  "Spectral",
+  "CEO",
+  "Boss",
+  "The Greatest",
+  "The Ugly",
+  "Warden",
+  "General",
+  "The Immortal",
+  "Hero",
+  "Sub",
+  "Villian",
+  "Mr",
+  "Mrs",
+  "Miss",
+  "Senor",
+  "Queen",
+  "The Demon",
+  "The Possessed",
+];
+const subName = [
+  "Apple",
+  "Fish",
+  "Salt",
+  "Pepper",
+  "Rainbow",
+  "Rain",
+  "Fire",
+  "Ice",
+  "Night",
+  "Kermit",
+  "Ash",
+  "Steel",
+  "Gold",
+  "Finger",
+  "Ankle",
+  "Copper",
+  "Ghost",
+  "Puppy",
+  "Cuccumber",
+];
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -123,6 +166,11 @@ function createPost(e, id) {
   const reaction2 = document.createElement("button");
   const reaction3 = document.createElement("button");
 
+  const commentContainer = document.createElement("div");
+  commentContainer.className = "commentContainer";
+
+  const gifCommentContainer = document.createElement("div");
+  gifCommentContainer.className = "gifCommentContainer";
   // reaction1Counter.appendChild(reaction1);
   // reaction2Counter.appendChild(reaction2);
   // reaction3Counter.appendChild(reaction3);
@@ -133,9 +181,9 @@ function createPost(e, id) {
     reaction1Counter,
     reaction2Counter,
     reaction3Counter,
+    reaction3,
     reaction1,
-    reaction2,
-    reaction3
+    reaction2
   );
 
   reaction1Counter.textContent = "0";
@@ -144,6 +192,9 @@ function createPost(e, id) {
   reaction1Counter.id = `reaction${id}Counter1`;
   reaction2Counter.id = `reaction${id}Counter2`;
   reaction3Counter.id = `reaction${id}Counter3`;
+  reaction1Counter.className = `reactionCounter`;
+  reaction2Counter.className = `reactionCounter`;
+  reaction3Counter.className = `reactionCounter`;
 
   // Giphy Section
   const gifBtn = document.createElement("button");
@@ -225,7 +276,7 @@ function createPost(e, id) {
   reaction2.id = `sad-${id}`;
   reactionContainer.className = "reactionContainer";
   postContainer.className = "postFlex";
-  commentForm.appendChild(gifDisplay);
+
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
@@ -246,12 +297,12 @@ function createPost(e, id) {
   // postFooter.appendChild(reaction3);
   // postFooter.appendChild(reaction1);
   // postFooter.appendChild(reaction2);
+  gifCommentContainer.append(giphySearch, giphyPreview, giphySubmit);
+  commentContainer.append(commentBar, commentButton, gifBtn);
   postFooter.appendChild(reactionContainer);
   postFooter.appendChild(commentForm);
-  commentForm.appendChild(commentBar);
-  commentForm.appendChild(commentButton);
-  commentForm.appendChild(gifBtn);
-  commentForm.append(giphySearch, giphyPreview, giphySubmit);
+
+  commentForm.append(commentContainer, gifCommentContainer, gifDisplay);
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
   headerContainer.appendChild(postText);
@@ -515,6 +566,30 @@ function previewGif(e, id) {
 
 function submitGif(e, id) {
   e.preventDefault();
+  const submitdiv = document.getElementById(`gifDisplay-${id}`);
+  const gifImg = submitdiv.firstChild.src;
+  const gifData = {
+    comments: gifImg,
+  };
+  const options2 = {
+    method: "PATCH",
+    body: JSON.stringify(gifData),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+    },
+  };
+
+  fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options2)
+    .then((r) => r.json())
+    .then((data) => {
+      console.log(data);
+      const array = data;
+      console.log(array);
+      array.push(gifImg);
+    });
 }
 
 },{}]},{},[1]);
