@@ -175,7 +175,7 @@ function createPost(e, id) {
   });
 
   const gifDisplay = document.createElement("div");
-  gifDisplay.id = "gifDisplay";
+  gifDisplay.id = `gifDisplay-${id}`;
 
   postFooter.append();
 
@@ -486,7 +486,7 @@ function previewGif(e, id) {
   e.preventDefault();
 
   const searchQuery = document.getElementById(`searchGif-${id}`);
-  const gifDisplay = document.getElementById("gifDisplay");
+  const gifDisplay = document.getElementById(`gifDisplay-${id}`);
 
   if (!gifDisplay.firstChild) {
     if (searchQuery.value == "") {
