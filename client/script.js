@@ -59,50 +59,6 @@ form.addEventListener("submit", (e) => {
     .catch(console.warn);
 });
 
-///////////////////// GIPHY FORM
-
-// giphyForm.addEventListener("submit", (e) => {
-//   e.preventDefault();
-
-//   fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
-//     .then((response) => response.json())
-//     .then((json) => {
-//       const randomInt = getRandomInt(0, json.data.length);
-//       const gif_url = json.data[randomInt].images.fixed_height.url;
-
-//       const giphyData = {
-//         url: gif_url,
-//       };
-
-//       const options = {
-//         method: "POST",
-//         mode: "cors",
-//         body: JSON.stringify(giphyData),
-//         headers: {
-//           "Content-Type": "application/json",
-//           Accept: "application/json",
-//           "Access-Control-Allow-Origin": "*",
-//           "Access-Control-Allow-Methods": "*",
-//         },
-//       };
-
-//       fetch(`https://small-talk-fp1.herokuapp.com/gifs/new`, options)
-//         .then((r) => r.json())
-//         .then((data) => {
-//           let test = data.url;
-//           test = gif_url;
-//           // data.url = gif_url;
-//         });
-//       // Change to iframe
-//       // let img = document.createElement("img");
-//       // img.src = gif_url;
-//       // parentDiv.appendChild(img);
-//       // const btn = getElementById("commentSubmit-2");
-//       // console.log(btn);
-//     })
-//     .catch(console.warn);
-// });
-
 //////////// fetches all the posts and loops over each creating a post for each
 
 function loadPosts(e) {
@@ -169,6 +125,9 @@ function createPost(e, id) {
   // reaction1Counter.appendChild(reaction1);
   // reaction2Counter.appendChild(reaction2);
   // reaction3Counter.appendChild(reaction3);
+
+  /// Reaction section
+
   reactionContainer.append(
     reaction1Counter,
     reaction2Counter,
@@ -184,6 +143,15 @@ function createPost(e, id) {
   reaction1Counter.id = `reaction${id}Counter1`;
   reaction2Counter.id = `reaction${id}Counter2`;
   reaction3Counter.id = `reaction${id}Counter3`;
+
+  // Giphy Section
+  const gifBtn = document.createElement("button");
+  gifBtn.id = `gif${id}`;
+  gifBtn.textContent = "React With A Giphy";
+  gifBtn.addEventListener("click", (e) => {
+    gifReact(e, id);
+  });
+
   // reactionContainer.appendChild(reaction2);
   // reactionContainer.appendChild(reaction3);
 
@@ -254,6 +222,7 @@ function createPost(e, id) {
   postFooter.appendChild(commentForm);
   commentForm.appendChild(commentBar);
   commentForm.appendChild(commentButton);
+  commentForm.appendChild(gifBtn);
   avatarContainer.appendChild(avatar);
   headerContainer.appendChild(postName);
   headerContainer.appendChild(postText);
@@ -405,4 +374,50 @@ function reactCounterSad(e, id) {
       data = likeData;
       console.log(data);
     });
+}
+
+///// Giphy
+
+function gifReact(e, id) {
+  e.preventDefault();
+  fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${API_Key}`)
+    .then((response) => response.json())
+    .then((json) => {
+      const randomInt = getRandomInt(0, json.data.length);
+      const gif_url = json.data[randomInt].images.fixed_height.url;
+      console.log(gif_url);
+
+      const giphyData = {
+        url: gif_url,
+      };
+
+      const options = {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify(giphyData),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "*",
+        },
+      };
+
+      fetch(`https://small-talk-fp1.herokuapp.com/gifs/new`, options)
+        .then((r) => r.json())
+        .then((data) => {
+          let test = data.url;
+          test = gif_url;
+          data.url = gif_url;
+        });
+      console.log(data.id);
+      const commentArea = document.getElementById(`comment-${id}`);
+      const newLi = document.createElement("li");
+      const gifimg = document.createElement("img");
+      gifimg.id = `gif-${data.id}`;
+      gifimg.src = gif_url;
+      newLi.appendChild(gifimg);
+      commentArea.appendChild(newLi);
+    })
+    .catch(console.warn);
 }
