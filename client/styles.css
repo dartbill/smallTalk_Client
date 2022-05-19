@@ -50,13 +50,8 @@ h2 {
   transition: color 100mms ease-out;
 }
 
-.sidebarOption.active {
-  color: var(--smallTalk-color);
-}
-
 .sidebar_speak {
   width: 100%;
-  background-color: var(--smallTalk-color);
   border: none;
   color: white;
   font-weight: 900;
@@ -83,15 +78,8 @@ body {
   padding-right: 20px;
 }
 
-.fa-twitter {
-  color: var(--smallTalk-color);
-  font-size: 30px;
-}
-
-/* Feed !  */
-
 .feed {
-  flex: 0.5;
+  flex: 0.6;
   border-right: 1px solid var(--smallTalk-background);
   min-width: 600px;
   overflow-y: scroll;
@@ -333,6 +321,9 @@ body {
   border-radius: 5px;
   height: 30px;
 }
+.commentBoxStyle:focus {
+  border: none;
+}
 .gifCommentContainer {
   display: flex;
   flex-wrap: wrap;
@@ -346,7 +337,13 @@ body {
   border: solid 1px var(--smallTalk-tertiaryColor);
   border-radius: 10px;
   color: var(--smallTalk-primaryColor);
+  transition: all 0.3s;
 }
 .commentFormBtn:nth-child(2) {
   margin-right: 5px;
+}
+.commentFormBtn:hover {
+  background-color: var(--smallTalk-primaryColor);
+  color: var(--smallTalk-secondaryColor);
+  border: solid 1px var(--smallTalk-secondaryColor);
 }

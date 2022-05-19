@@ -1,10 +1,6 @@
 const postContent = document.getElementById("journalPost");
 const form = document.getElementById("form");
-const annoynmousName = document.getElementById("userName");
-const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
-const giphyForm = document.getElementById("giphyForm");
-
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 
 ///////////// Random Name function
@@ -623,5 +619,8 @@ function submitGif(e, id) {
     alert("You have not previewed your gif!");
   }
 }
-
-module.exports = {getRandomInt, randomNameGenerator,loadPosts}
+try {
+  module.exports = { getRandomInt, randomNameGenerator, loadPosts };
+} catch (e) {
+  console.log("ERROR::", e);
+}
