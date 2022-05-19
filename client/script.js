@@ -620,4 +620,4 @@ function submitGif(e, id) {
   }
 }
 
-module.exports = getRandomInt
+module.exports = {getRandomInt, randomNameGenerator}
