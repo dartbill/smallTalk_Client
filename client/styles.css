@@ -3,18 +3,27 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  font-family: "Roboto Flex", sans-serif;
+}
 body {
-  --smallTalk-color: #28072b;
+  --smallTalk-primaryColor: #08a1e4;
+  --smallTalk-secondaryColor: #0a065c;
+  --smallTalk-tertiaryColor: #ff66c4;
   --smallTalk-background: #e6ecf0;
 }
 
+h2 {
+  font-family: "Nunito", sans-serif;
+}
 .sidebarOption {
   display: flex;
   align-items: center;
   cursor: pointer;
 }
-
+.side-icon {
+  text-align: center;
+}
 .sidebarOption:not(:last-child) {
   margin-bottom: 5px;
 }
@@ -22,9 +31,9 @@ body {
   margin-top: 20px;
 }
 
-.sidebarOption .material-icons,
+.sidebarOption,
 .fa-twitter {
-  padding: 20px;
+  padding: 10px;
 }
 
 .sidebarOption h2 {
@@ -36,7 +45,7 @@ body {
 .sidebarOption:hover {
   background-color: var(--smallTalk-background);
   border-radius: 30px;
-  color: var(--smallTalk-color);
+
   transition: color 100mms ease-out;
 }
 
@@ -90,16 +99,18 @@ body {
 .feed_header {
   position: sticky;
   top: 0;
+  width: 100%;
+  text-align: center;
   background-color: white;
   z-index: 100;
   border: 1px solid var(--smallTalk-background);
-  padding: 15px 20px;
+  padding: 25px 20px;
 }
-
+/* 
 .feed_header h2 {
   font-size: 20;
   font-weight: 800;
-}
+} */
 
 .feed::-webkit-scrollbar {
   font-size: 20px;
@@ -122,12 +133,10 @@ body {
   padding-bottom: 10px;
   border-bottom: 8px solid var(--smallTalk-background);
   padding-right: 10px;
-}
-
-.tweetBox {
   display: flex;
   flex-direction: column;
 }
+
 #form {
   display: flex;
   height: 120px;
@@ -148,14 +157,15 @@ body {
 }
 
 .tweetBox_tweetButton {
-  background-color: var(--smallTalk-color);
-  border: none;
-  color: white;
-  font-weight: 800;
+  background-color: var(--smallTalk-primaryColor);
+  border: solid 1px var(--smallTalk-secondaryColor);
+  color: var(--smallTalk-secondaryColor);
+  font-weight: 600;
+  font-size: 16px;
   border-radius: 30px;
   width: 80px;
   height: 40px;
-  margin-top: 15px;
+  margin-top: 40px;
   margin-left: 40px;
   justify-self: center;
   transition: all 0.2s;
@@ -178,7 +188,7 @@ body {
   align-items: flex-start;
   border-bottom: 1px solid var(--smallTalk-background);
   padding-bottom: 10px;
-  max-width: 600px;
+  max-width: 700px;
 }
 
 .post_body img {
@@ -190,7 +200,7 @@ body {
 .post_footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 30px;
   align-items: center;
 }
 
@@ -236,9 +246,9 @@ body {
   padding: 2px;
   flex-basis: 30%;
   background-color: white;
-  border: solid 1px #28072b;
+  border: solid 1px var(--smallTalk-tertiaryColor);
   border-radius: 10px;
-  color: #28072b;
+  color: var(--smallTalk-primaryColor);
   transition: all 0.3s;
 }
 .material-icons:not(:last-child) {
@@ -246,9 +256,9 @@ body {
 }
 
 .material-icons:hover {
-  background-color: #28072b;
-  border: solid 1px black;
-  color: white;
+  background-color: var(--smallTalk-primaryColor);
+  border: solid 1px var(--smallTalk-secondaryColor);
+  color: var(--smallTalk-secondaryColor);
 }
 
 .postComments {
@@ -289,4 +299,20 @@ body {
 
 .commentForm {
   flex-direction: row;
+  display: flex;
+}
+
+.commentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 8px;
+}
+
+.postComments {
+  flex-basis: 100%;
+  width: 80%;
+}
+
+.gifCommentContainer {
 }

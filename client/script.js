@@ -126,14 +126,31 @@ function fetchPost(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
     .then((data) => {
+      console.log(postText);
+      // Setting post text to the text stored in the object.text
       postText.textContent = data.text;
-
       /// comments
       const commentsArray = data.comments;
-      if (!data.comment) {
+
+      if (data.comments) {
         // TODO::::  Maybe send comment into createComment
         commentsArray.forEach((comment, index) => {
-          createComment(id, index);
+          const result = data.comments[index];
+          const newLi = document.createElement("li");
+          const commentList = document.getElementById(`comment-${id}`);
+          if (!result.includes("https://media")) {
+            newLi.textContent = data.comments[index];
+
+            commentList.appendChild(newLi);
+          } else {
+            const gifimg = document.createElement("img");
+            gifimg.className = `gifimg`;
+            gifimg.id = `gif-${id}`;
+            gifimg.src = data.comments[index];
+            newLi.appendChild(gifimg);
+            commentList.appendChild(newLi);
+          }
+          // createComment(id, index);
         });
       }
       console.log();
@@ -198,7 +215,7 @@ function createPost(e, id) {
   // Giphy Section
   const gifBtn = document.createElement("button");
   gifBtn.id = `gif${id}`;
-  gifBtn.textContent = "React With A Giphy";
+  gifBtn.textContent = "Lucky Giphy";
   gifBtn.addEventListener("click", (e) => {
     gifReact(e, id);
   });
@@ -219,7 +236,7 @@ function createPost(e, id) {
   });
   const giphySubmit = document.createElement("button");
   giphySubmit.id = `searchBtnGif-${id}`;
-  giphySubmit.textContent = `Submit Your Giphy`;
+  giphySubmit.textContent = `Send a Giphy`;
   giphySubmit.name = "searchGif";
   giphySubmit.addEventListener("click", (e) => {
     submitGif(e, id);
@@ -286,7 +303,7 @@ function createPost(e, id) {
   commentForm.addEventListener("submit", (e) => {
     getcommentinput(e, id);
   });
-  commentButton.textContent = "Post";
+  commentButton.value = "Comment";
   commentButton.id = `commentSubmit-${id}`;
   commentArea.className = "commentArea";
   commentList.className = "commentList";
@@ -342,33 +359,14 @@ function getcommentinput(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options)
     .then((r) => r.json())
     .then((data) => {
+      const commentArea = document.getElementById(`comment-${id}`);
+      const newLi = document.createElement("li");
+      newLi.textContent = postData.comments;
+      commentArea.appendChild(newLi);
       const array = data;
       array.push(postData.comments);
     });
   e.target[0].value = "";
-}
-
-function createComment(id, i) {
-  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
-    .then((r) => r.json())
-    .then((data) => {
-      const result = data.comments[i];
-
-      const newLi = document.createElement("li");
-      const commentList = document.getElementById(`comment-${id}`);
-      if (!result.includes("https://media")) {
-        newLi.textContent = data.comments[i];
-
-        commentList.appendChild(newLi);
-      } else {
-        const gifimg = document.createElement("img");
-        gifimg.className = `gifimg`;
-        gifimg.id = `gif-${id}`;
-        gifimg.src = data.comments[i];
-        newLi.appendChild(gifimg);
-        commentList.appendChild(newLi);
-      }
-    });
 }
 
 ////////// emoji counter
@@ -584,9 +582,18 @@ function submitGif(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options2)
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
+      const gifDisplay = document.getElementById(`gifDisplay-${id}`);
+      const commentArea = document.getElementById(`comment-${id}`);
+      const newLi = document.createElement("li");
+      const gifimg = document.createElement("img");
+      gifimg.className = `gifimg`;
+      gifimg.src = gifImg;
+
+      newLi.appendChild(gifimg);
+      commentArea.appendChild(newLi);
+
       const array = data;
-      console.log(array);
       array.push(gifImg);
+      gifDisplay.removeChild(gifDisplay.firstChild);
     });
 }
