@@ -127,14 +127,31 @@ function fetchPost(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
     .then((r) => r.json())
     .then((data) => {
+      console.log(postText);
+      // Setting post text to the text stored in the object.text
       postText.textContent = data.text;
-
       /// comments
       const commentsArray = data.comments;
-      if (!data.comment) {
+
+      if (data.comments) {
         // TODO::::  Maybe send comment into createComment
         commentsArray.forEach((comment, index) => {
-          createComment(id, index);
+          const result = data.comments[index];
+          const newLi = document.createElement("li");
+          const commentList = document.getElementById(`comment-${id}`);
+          if (!result.includes("https://media")) {
+            newLi.textContent = data.comments[index];
+
+            commentList.appendChild(newLi);
+          } else {
+            const gifimg = document.createElement("img");
+            gifimg.className = `gifimg`;
+            gifimg.id = `gif-${id}`;
+            gifimg.src = data.comments[index];
+            newLi.appendChild(gifimg);
+            commentList.appendChild(newLi);
+          }
+          // createComment(id, index);
         });
       }
       console.log();
@@ -351,29 +368,6 @@ function getcommentinput(e, id) {
       array.push(postData.comments);
     });
   e.target[0].value = "";
-}
-
-function createComment(id, i) {
-  fetch(`https://small-talk-fp1.herokuapp.com/${id}`)
-    .then((r) => r.json())
-    .then((data) => {
-      const result = data.comments[i];
-
-      const newLi = document.createElement("li");
-      const commentList = document.getElementById(`comment-${id}`);
-      if (!result.includes("https://media")) {
-        newLi.textContent = data.comments[i];
-
-        commentList.appendChild(newLi);
-      } else {
-        const gifimg = document.createElement("img");
-        gifimg.className = `gifimg`;
-        gifimg.id = `gif-${id}`;
-        gifimg.src = data.comments[i];
-        newLi.appendChild(gifimg);
-        commentList.appendChild(newLi);
-      }
-    });
 }
 
 ////////// emoji counter
