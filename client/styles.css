@@ -300,6 +300,7 @@ body {
 .commentForm {
   flex-direction: row;
   display: flex;
+  column-gap: 8px;
 }
 
 .commentContainer {
@@ -311,8 +312,13 @@ body {
 
 .postComments {
   flex-basis: 100%;
-  width: 80%;
 }
-
+.commentBoxStyle {
+  width: 130px;
+}
 .gifCommentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 8px;
 }
