@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.41% </span>
+                <span class="strong">45.48% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>149/321</span>
+                <span class='fraction'>146/321</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46.56% </span>
+                <span class="strong">45.62% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>149/320</span>
+                <span class='fraction'>146/320</span>
             </div>
         
             
@@ -685,13 +685,23 @@
 <a name='L620'></a><a href='#L620'>620</a>
 <a name='L621'></a><a href='#L621'>621</a>
 <a name='L622'></a><a href='#L622'>622</a>
-<a name='L623'></a><a href='#L623'>623</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L623'></a><a href='#L623'>623</a>
+<a name='L624'></a><a href='#L624'>624</a>
+<a name='L625'></a><a href='#L625'>625</a>
+<a name='L626'></a><a href='#L626'>626</a>
+<a name='L627'></a><a href='#L627'>627</a>
+<a name='L628'></a><a href='#L628'>628</a>
+<a name='L629'></a><a href='#L629'>629</a>
+<a name='L630'></a><a href='#L630'>630</a>
+<a name='L631'></a><a href='#L631'>631</a>
+<a name='L632'></a><a href='#L632'>632</a>
+<a name='L633'></a><a href='#L633'>633</a>
+<a name='L634'></a><a href='#L634'>634</a>
+<a name='L635'></a><a href='#L635'>635</a>
+<a name='L636'></a><a href='#L636'>636</a>
+<a name='L637'></a><a href='#L637'>637</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1302,18 +1312,32 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const postContent = document.getElementById("journalPost");
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const postContent = document.getElementById("journalPost");
 const form = document.getElementById("form");
-const annoynmousName = document.getElementById("userName");
-const postButton = document.getElementById("postButton");
 const parentDiv = document.getElementById("posts");
-const giphyForm = document.getElementById("giphyForm");
-&nbsp;
 const API_Key = "yMYTtCg4jPmk6BxD19dklT7FUUfAMQAD";
 &nbsp;
 ///////////// Random Name function
@@ -1386,7 +1410,7 @@ document.addEventListener("DOMContentLoaded", <span class="fstat-no" title="func
 form.addEventListener("submit", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
   const postContent = <span class="cstat-no" title="statement not covered" >document.getElementById("journalPost");</span>
-<span class="cstat-no" title="statement not covered" >  if (postContent.textContent === "") {</span>
+<span class="cstat-no" title="statement not covered" >  if (postContent.value === "") {</span>
 <span class="cstat-no" title="statement not covered" >    alert("Please input characters!");</span>
   } else {
     const postData = <span class="cstat-no" title="statement not covered" >{</span>
@@ -1616,7 +1640,7 @@ function createPost(e, id) {
   commentBar.className = "postComments";
   commentBar.className = "commentBoxStyle";
   commentBar.id = `commentTextarea${id}`;
-  commentBar.maxLength = "20";
+  commentBar.maxLength = "30";
   commentBar.placeholder = "Make a comment";
   commentButton.className = "commentButton";
   commentButton.className = "commentFormBtn";
@@ -1649,7 +1673,7 @@ function createPost(e, id) {
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
 &nbsp;
-  parentDiv.appendChild(postContainer);
+  parentDiv.prepend(postContainer);
 &nbsp;
   // Clear Input, add randomName
 &nbsp;
@@ -1663,7 +1687,7 @@ function createPost(e, id) {
 function <span class="fstat-no" title="function not covered" >getcommentinput(</span>e, id) {
 <span class="cstat-no" title="statement not covered" >  e.preventDefault();</span>
   const commentContent = <span class="cstat-no" title="statement not covered" >document.getElementById(`commentTextarea${id}`);</span>
-<span class="cstat-no" title="statement not covered" >  if (commentContent.textContent === "") {</span>
+<span class="cstat-no" title="statement not covered" >  if (commentContent.value === "") {</span>
 <span class="cstat-no" title="statement not covered" >    alert("You haven't added a comment");</span>
   } else {
     const postData = <span class="cstat-no" title="statement not covered" >{</span>
@@ -1923,20 +1947,38 @@ function <span class="fstat-no" title="function not covered" >submitGif(</span>e
         const array = <span class="cstat-no" title="statement not covered" >data;</span>
 <span class="cstat-no" title="statement not covered" >        array.push(gifImg);</span>
 <span class="cstat-no" title="statement not covered" >        gifDisplay.removeChild(gifDisplay.firstChild);</span>
+&nbsp;
+        const searchGif = <span class="cstat-no" title="statement not covered" >document.getElementById(`searchGif-${id}`);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(searchGif.textContent);</span>
+<span class="cstat-no" title="statement not covered" >        searchGif.value = "";</span>
       });
   } else {
 <span class="cstat-no" title="statement not covered" >    alert("You have not previewed your gif!");</span>
   }
 }
 &nbsp;
-module.exports = {getRandomInt, randomNameGenerator,loadPosts, fetchPost, createPost,getcommentinput, reactCounterLike,reactCounterSmile,reactCounterSad,gifReact,previewGif,submitGif}</pre></td></tr></table></pre>
+module.exports = {
+  getRandomInt,
+  randomNameGenerator,
+  loadPosts,
+  fetchPost,
+  createPost,
+  getcommentinput,
+  reactCounterLike,
+  reactCounterSmile,
+  reactCounterSad,
+  gifReact,
+  previewGif,
+  submitGif,
+};
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu May 19 2022 16:20:13 GMT+0100 (British Summer Time)
+                at Thu May 19 2022 17:30:21 GMT+0100 (British Summer Time)
             </div>
         <script src="prettify.js"></script>
         <script>
