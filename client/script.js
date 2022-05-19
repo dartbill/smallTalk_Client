@@ -597,3 +597,5 @@ function submitGif(e, id) {
       gifDisplay.removeChild(gifDisplay.firstChild);
     });
 }
+
+module.exports = getRandomInt
