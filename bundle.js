@@ -585,9 +585,16 @@ function submitGif(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options2)
     .then((r) => r.json())
     .then((data) => {
-      console.log(data);
+      const commentArea = document.getElementById(`comment-${id}`);
+      const newLi = document.createElement("li");
+      const gifimg = document.createElement("img");
+      gifimg.className = `gifimg`;
+      gifimg.src = gifImg;
+
+      newLi.appendChild(gifimg);
+      commentArea.appendChild(newLi);
+
       const array = data;
-      console.log(array);
       array.push(gifImg);
     });
 }
