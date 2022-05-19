@@ -620,4 +620,4 @@ function submitGif(e, id) {
   }
 }
 
-module.exports = {getRandomInt, randomNameGenerator,loadPosts}
+module.exports = {getRandomInt, randomNameGenerator,loadPosts, fetchPost, createPost,getcommentinput, reactCounterLike,reactCounterSmile,reactCounterSad,gifReact,previewGif,submitGif}
