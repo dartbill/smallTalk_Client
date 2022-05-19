@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const postContent = document.getElementById("journalPost");
-  if (postContent.textContent === "") {
+  if (postContent.value === "") {
     alert("Please input characters!");
   } else {
     const postData = {
@@ -354,7 +354,7 @@ function createPost(e, id) {
 function getcommentinput(e, id) {
   e.preventDefault();
   const commentContent = document.getElementById(`commentTextarea${id}`);
-  if (commentContent.textContent === "") {
+  if (commentContent.value === "") {
     alert("You haven't added a comment");
   } else {
     const postData = {
@@ -614,6 +614,10 @@ function submitGif(e, id) {
         const array = data;
         array.push(gifImg);
         gifDisplay.removeChild(gifDisplay.firstChild);
+
+        const searchGif = document.getElementById(`searchGif-${id}`);
+        console.log(searchGif.textContent);
+        searchGif.value = "";
       });
   } else {
     alert("You have not previewed your gif!");
