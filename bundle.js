@@ -343,6 +343,10 @@ function getcommentinput(e, id) {
   fetch(`https://small-talk-fp1.herokuapp.com/${id}`, options)
     .then((r) => r.json())
     .then((data) => {
+      const commentArea = document.getElementById(`comment-${id}`);
+      const newLi = document.createElement("li");
+      newLi.textContent = postData.comments;
+      commentArea.appendChild(newLi);
       const array = data;
       array.push(postData.comments);
     });
