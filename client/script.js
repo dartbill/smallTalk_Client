@@ -174,6 +174,7 @@ function createPost(e, id) {
   const headerContainer = document.createElement("div");
   const postName = document.createElement("h3");
   const postFooter = document.createElement("div");
+  const postComment = document.createElement("div");
   const reactionContainer = document.createElement("div");
   const reaction1Counter = document.createElement("div");
   const reaction2Counter = document.createElement("div");
@@ -226,17 +227,20 @@ function createPost(e, id) {
   giphySearch.maxLength = "20";
   giphySearch.name = "searchGif";
   giphySearch.id = `searchGif-${id}`;
+  giphySearch.className = "commentBoxStyle";
   giphySearch.class = "postComments";
+  giphySearch.placeholder = "Search for a gif";
+  giphySearch.maxLength = "20";
   const giphyPreview = document.createElement("button");
   giphyPreview.id = `previewBtnGif-${id}`;
-  giphyPreview.textContent = `Preview Your Giphy`;
+  giphyPreview.textContent = `Preview`;
   giphyPreview.name = "searchGif";
   giphyPreview.addEventListener("click", (e) => {
     previewGif(e, id);
   });
   const giphySubmit = document.createElement("button");
   giphySubmit.id = `searchBtnGif-${id}`;
-  giphySubmit.textContent = `Send a Giphy`;
+  giphySubmit.textContent = `Send`;
   giphySubmit.name = "searchGif";
   giphySubmit.addEventListener("click", (e) => {
     submitGif(e, id);
@@ -259,6 +263,7 @@ function createPost(e, id) {
   const commentButton = document.createElement("input");
   const commentList = document.createElement("ul");
   const commentArea = document.createElement("div");
+  postComment.className = "postCommentContainter";
 
   avatar.src =
     "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png";
@@ -296,8 +301,10 @@ function createPost(e, id) {
   commentForm.className = "commentForm";
   commentForm.id = `formInfo-${id}`;
   commentBar.className = "postComments";
+  commentBar.className = "commentBoxStyle";
   commentBar.id = `commentTextarea${id}`;
   commentBar.maxLength = "20";
+  commentBar.placeholder = "Make a comment";
   commentButton.className = "commentButton";
   commentButton.setAttribute("type", "submit");
   commentForm.addEventListener("submit", (e) => {
@@ -326,6 +333,8 @@ function createPost(e, id) {
   headerContainer.appendChild(commentArea);
   newPost.appendChild(headerContainer);
   newPost.appendChild(postFooter);
+  postComment.appendChild(commentForm);
+  newPost.appendChild(postComment);
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
 
