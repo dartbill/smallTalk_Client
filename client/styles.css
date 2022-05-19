@@ -140,6 +140,7 @@ body {
 #form {
   display: flex;
   height: 120px;
+  justify-content: space-between;
   align-items: center;
   border-bottom: solid 2px #e6ecf0;
 }
@@ -166,7 +167,7 @@ body {
   width: 80px;
   height: 40px;
   margin-top: 40px;
-  margin-left: 40px;
+  /* margin-left: 40px;  */
   justify-self: center;
   transition: all 0.2s;
 }
@@ -199,8 +200,8 @@ body {
 
 .post_footer {
   display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
+  justify-content: flex-end;
+  margin-top: 10px;
   align-items: center;
 }
 
@@ -216,14 +217,16 @@ body {
   color: gray;
 }
 
-.post_headerText {
-  font-size: 15px;
-  margin-bottom: 5px;
+.title {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: var(--smallTalk-secondaryColor);
 }
 
 .post_headerDescription {
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 20px;
+  margin-left: 8px;
 }
 
 .post_body {
@@ -264,12 +267,18 @@ body {
 .postComments {
   padding: 2px;
 }
-
+.commentsHeader {
+  margin-bottom: 8px;
+  font-size: 18px;
+}
 .commentList {
   list-style-type: none;
   margin-left: 10px;
 }
-
+.commentList > li {
+  font-size: 16px;
+  padding: 2px;
+}
 .commentList > li::before {
   content: "--  ";
   padding: 1px;
@@ -282,7 +291,7 @@ body {
   flex-wrap: wrap;
   padding: 0 5px;
   align-self: flex-end;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .reactionCounter {
@@ -300,19 +309,43 @@ body {
 .commentForm {
   flex-direction: row;
   display: flex;
+  column-gap: 8px;
+  margin-top: 40px;
 }
 
 .commentContainer {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   row-gap: 8px;
 }
 
 .postComments {
   flex-basis: 100%;
-  width: 80%;
+}
+.commentBoxStyle {
+  width: 180px;
+  padding: 2px;
+  text-indent: 4px;
+  font-size: 12px;
+  border: solid 1px #0a065c;
+  border-radius: 5px;
+  height: 30px;
+}
+.gifCommentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  row-gap: 8px;
 }
 
-.gifCommentContainer {
+.commentFormBtn {
+  padding: 5px;
+  background-color: white;
+  border: solid 1px var(--smallTalk-tertiaryColor);
+  border-radius: 10px;
+  color: var(--smallTalk-primaryColor);
+}
+.commentFormBtn:nth-child(2) {
+  margin-right: 5px;
 }
