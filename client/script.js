@@ -215,7 +215,7 @@ function createPost(e, id) {
   // Giphy Section
   const gifBtn = document.createElement("button");
   gifBtn.id = `gif${id}`;
-  gifBtn.textContent = "React With A Giphy";
+  gifBtn.textContent = "Lucky Giphy";
   gifBtn.addEventListener("click", (e) => {
     gifReact(e, id);
   });
@@ -236,7 +236,7 @@ function createPost(e, id) {
   });
   const giphySubmit = document.createElement("button");
   giphySubmit.id = `searchBtnGif-${id}`;
-  giphySubmit.textContent = `Submit Your Giphy`;
+  giphySubmit.textContent = `Send a Giphy`;
   giphySubmit.name = "searchGif";
   giphySubmit.addEventListener("click", (e) => {
     submitGif(e, id);
@@ -303,7 +303,7 @@ function createPost(e, id) {
   commentForm.addEventListener("submit", (e) => {
     getcommentinput(e, id);
   });
-  commentButton.textContent = "Post";
+  commentButton.value = "Comment";
   commentButton.id = `commentSubmit-${id}`;
   commentArea.className = "commentArea";
   commentList.className = "commentList";
