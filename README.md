@@ -72,7 +72,17 @@ We launched our client on Netlify!
 
 ## The Process
 
-1. We took
+1. We first set up a kanban board on the github projects tab, where we thought about the different functionalities we would need to implement and then distributed them between us
+2. We decided that our journal should take only a post text to begin with and then each post would have the ability to add more detail with a new form created on each post.
+3. 2 team members tackled the client side, creating a design and making some skeleton pseudo code functions.
+4. A branch was made for each team member to work on as a developer with a parent staging branch which we all pushed to.
+5. 2 team members tackled the server side, see the -[smallTalk_Server Repo](https://github.com/GMillerMc/smallTalk_Server)
+6. Once the website had a basic HTML we started connecting the client to the server
+7. The client was deployed on Netlify (see above for the link to smallTalk)
+8. We completed the functionality of our journal so we could send and recieve more data from the server.
+9. Began testing on our client side
+10. Finished up the styling of the webpage
+11. Push our final changes to the main branch of github
 
 ### Wins
 
