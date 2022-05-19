@@ -623,3 +623,5 @@ function submitGif(e, id) {
     alert("You have not previewed your gif!");
   }
 }
+
+module.exports = {getRandomInt, randomNameGenerator,loadPosts}
