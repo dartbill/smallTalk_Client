@@ -8,18 +8,8 @@
  global.fetch = require('jest-fetch-mock');
 
 
-  // const getRandomInt = require('../client/script');
-
-  // describe('body', () => {
-  //   it('it generates a number', () => {
-  //     let heading = document.querySelector('#form')
-  //     expect(heading).toBeTruthy()
-  //   })
-  // })
-  
-
-
  let app;
+
 describe('app', () => {
     beforeEach(() => {
         document.documentElement.innerHTML = html.toString();
@@ -29,10 +19,16 @@ describe('app', () => {
         fetch.resetMocks();
     })
     describe('requests', () => {
-      describe('make a random name', () => {
-          test('make a random name', () => {
-              app.randomNameGenerator();
-              console.log("hello")
+      describe('testing random num generator', () => {
+          test('get a random number between two values', () => {
+              let min = 2 
+              let max = 10
+              
+              const int = app.getRandomInt(min,max)
+              
+              expect(int).toBeGreaterThanOrEqual(min)
+              expect(int).toBeLessThan(max)
+              
               // expect(fetch).toHaveBeenCalledWith(expect.stringMatching(/\/cats$/))
               // expect(fetch.mock.calls[0][0]).toMatch(/cats$/)
           })
