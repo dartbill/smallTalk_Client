@@ -303,7 +303,7 @@ function createPost(e, id) {
   commentBar.className = "postComments";
   commentBar.className = "commentBoxStyle";
   commentBar.id = `commentTextarea${id}`;
-  commentBar.maxLength = "20";
+  commentBar.maxLength = "30";
   commentBar.placeholder = "Make a comment";
   commentButton.className = "commentButton";
   commentButton.className = "commentFormBtn";
@@ -336,7 +336,7 @@ function createPost(e, id) {
   postContainer.appendChild(avatarContainer);
   postContainer.appendChild(newPost);
 
-  parentDiv.appendChild(postContainer);
+  parentDiv.prepend(postContainer);
 
   // Clear Input, add randomName
 
@@ -620,7 +620,12 @@ function submitGif(e, id) {
   }
 }
 try {
-  module.exports = { getRandomInt, randomNameGenerator, loadPosts };
+  module.exports = {
+    getRandomInt,
+    randomNameGenerator,
+    loadPosts,
+    reactCounterLike,
+  };
 } catch (e) {
   console.log("ERROR::", e);
 }

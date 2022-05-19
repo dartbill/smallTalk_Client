@@ -320,6 +320,7 @@ body {
   border: solid 1px #0a065c;
   border-radius: 5px;
   height: 30px;
+  flex-basis: 80%;
 }
 .commentBoxStyle:focus {
   border: none;
