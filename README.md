@@ -100,7 +100,6 @@ We launched our client on Netlify!
 
 ### Challenges
 
--
 - Testing on the client side was poor (roughly XX% coverage).
 - We attempted to use a bundler Watchify so we could keep our data seperate but had a few issues using the require method.
 
