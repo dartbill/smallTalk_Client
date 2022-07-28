@@ -620,20 +620,23 @@ function submitGif(e, id) {
     alert("You have not previewed your gif!");
   }
 }
-
-module.exports = {
-  getRandomInt,
-  randomNameGenerator,
-  loadPosts,
-  fetchPost,
-  createPost,
-  getcommentinput,
-  reactCounterLike,
-  reactCounterSmile,
-  reactCounterSad,
-  gifReact,
-  previewGif,
-  submitGif,
-};
+try {
+  module.exports = {
+    getRandomInt,
+    randomNameGenerator,
+    loadPosts,
+    fetchPost,
+    createPost,
+    getcommentinput,
+    reactCounterLike,
+    reactCounterSmile,
+    reactCounterSad,
+    gifReact,
+    previewGif,
+    submitGif,
+  };
+} catch (e) {
+  console.log("Why??", e);
+}
 
 },{}]},{},[1]);
